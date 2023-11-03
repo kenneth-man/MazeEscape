@@ -12,6 +12,7 @@
 				"-Wall",
 				"-std=c++17",
 				"${fileDirname}/*.cpp",
+				"${fileDirname}/Grid/*.cpp",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}.exe"
 			],
