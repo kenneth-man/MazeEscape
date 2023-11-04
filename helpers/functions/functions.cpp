@@ -3,6 +3,6 @@
 
 using namespace std;
 
-void helperFunctions::displayRawString(string input) {
-	cout << "R\"" + input + "\"";
+void helperFunctions::displayString(string input) {
+	cout << input << "\n";
 }

@@ -4,9 +4,12 @@
 #include "../helpers/constants/constants.h"
 
 using namespace std;
-using helperFunctions::displayRawString;
-using helperConstants::demon;
+using helperFunctions::displayString;
+using helperConstants::titleName;
+using helperConstants::titleDescription;
 
 void TitleScreen::render() {
-	displayRawString(demon);
+	displayString(titleName);
+	cout << "\n";
+	displayString(titleDescription);
 }

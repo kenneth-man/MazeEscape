@@ -5,7 +5,7 @@
 using namespace std;
 
 namespace helperFunctions {
-	void displayRawString(string input);
+	void displayString(string input);
 }
 
 #endif

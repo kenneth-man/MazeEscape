@@ -21,7 +21,9 @@ int main() {
 
 			input = getch();
 
-			gameStart = false;
+			if(input == ' ') {
+				gameStart = false;
+			}
 
 			continue;
 		}
@@ -43,11 +45,12 @@ int main() {
 // different terrain character map
 // boundaries checking (outside area)
 // title screen and instructions (ensure chcp 65001 to choose UTF-8 encoding and terminal font is Cascadia mono)
-// prevent `displayRawString` displaying `R""`
+// prevent `displayString` displaying `R""` (COMPLETE)
 // refactor grid border and align with grid size x and y
 // collision detection (walls, structures)
 // enemies chasing (timer? updates without needing player input?)
 // raw string puzzles
 // find a way to run `▓` in windows terminal without lag? (runs fine in vscode)
 // player attack
+// player lives; display on screen
 
