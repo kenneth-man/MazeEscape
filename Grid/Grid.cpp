@@ -1,9 +1,12 @@
 #include <iostream>
+#include <stdlib.h>
 #include "./Grid.h"
 
 using namespace std;
 
 void Grid::render(Player player) {
+	system("CLS");
+
 	for (int col = 0; col < Grid::ySize; col++) {
 		for (int row = 0; row < Grid::xSize; row ++) {
 			if (player.xPos == row && player.yPos == col) {
@@ -14,5 +17,4 @@ void Grid::render(Player player) {
 		}
 		cout << "\n";
 	}
-	cout << "◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇" << "\n";
 }

@@ -7,7 +7,7 @@
 using namespace std;
 
 int main() {
-    Grid grid { 100, 15, "█" };
+    Grid grid { 120, 20, "█" };
 	Player player { 2, 4, "╇" };
 	Actions actions {};
 	TitleScreen titleScreen {};
@@ -39,18 +39,20 @@ int main() {
 }
 
 // TODO:
-// player starting position refactor
-// create struct for while loop movement (COMPLETE)
-// improve player sprite
+// add double buffering to prevent flickering when player moves
+// add border to game window
+// boundaries checking (outside area) e.g. if past x position 120, then update player position to n - 120 ?
+// figure out how to display things at defined coordinates e.g. structure at position 320,40
 // different terrain character map
-// boundaries checking (outside area)
-// title screen and instructions (ensure chcp 65001 to choose UTF-8 encoding and terminal font is Cascadia mono)
-// prevent `displayString` displaying `R""` (COMPLETE)
-// refactor grid border and align with grid size x and y
+// player starting position refactor
+// improve player sprite
 // collision detection (walls, structures)
 // enemies chasing (timer? updates without needing player input?)
 // raw string puzzles
-// find a way to run `▓` in windows terminal without lag? (runs fine in vscode)
 // player attack
 // player lives; display on screen
 
+// COMPLETE:
+// create struct for while loop movement
+// title screen and instructions (ensure chcp 65001 to choose UTF-8 encoding and terminal font is Cascadia mono)
+// prevent `displayString` displaying `R""`

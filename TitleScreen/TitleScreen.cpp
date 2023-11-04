@@ -10,6 +10,5 @@ using helperConstants::titleDescription;
 
 void TitleScreen::render() {
 	displayString(titleName);
-	cout << "\n";
 	displayString(titleDescription);
 }
