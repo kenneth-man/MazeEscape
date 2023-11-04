@@ -12,7 +12,10 @@
 				"-Wall",
 				"-std=c++17",
 				"${fileDirname}/*.cpp",
+				"${fileDirname}/Actions/*.cpp",
 				"${fileDirname}/Grid/*.cpp",
+				"${fileDirname}/helpers/functions/*.cpp",
+				"${fileDirname}/TitleScreen/*.cpp",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}.exe"
 			],
