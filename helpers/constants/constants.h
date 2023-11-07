@@ -29,6 +29,14 @@ namespace helperConstants {
 	Set it manually with `chcp 65001`)
 - NB: Make sure your terminal is using the font family `Cascadia mono`
 	)"};
+	const string terrain = "█";
+	const string player = "╇";
+	const string xBorder = "║";
+	const string yBorder = "═";
+	const string topLeftBorder = "╔";
+	const string topRightBorder = "╗";
+	const string botLeftBorder = "╚";
+	const string botRightBorder = "╝";
 	const string demon {R"(
 		                                             ,--,  ,.-.
                ,                   \,       '-,-`,'-.' | ._

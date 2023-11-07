@@ -9,7 +9,7 @@ struct Grid {
 	int xSize;
 	int ySize;
 	string sprite;
-	void render(Player player);
+	void render(const Player &player);
 };
 
 #endif
