@@ -1,6 +1,7 @@
 #ifndef _CONSTANTS_
 #define _CONSTANTS_
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -30,7 +31,11 @@ namespace helperConstants {
 - NB: Make sure your terminal is using the font family `Cascadia mono`
 	)"};
 	const string terrain = "█";
-	const string player = "╇";
+	const vector<vector<string>> player = {
+		{ "_", "O", "_" },
+		{ "/", "|", "\\" },
+		{ "/", " ", "\\"}
+	};
 	const string xBorder = "║";
 	const string yBorder = "═";
 	const string topLeftBorder = "╔";

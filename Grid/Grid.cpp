@@ -10,37 +10,59 @@ void Grid::render(const Player &player) {
 
 	for (int col = 0; col < Grid::ySize; col++) {
 		for (int row = 0; row < Grid::xSize; row ++) {
-			// refactor this all
-			if (row == 0 && col == Grid::ySize - 1) {
-				cout << helperConstants::botLeftBorder;
+			if (Grid::renderBorder(col, row)) {
 				continue;
 			}
-			if (row == Grid::xSize - 1 && col == Grid::ySize - 1) {
-				cout << helperConstants::botRightBorder;
-				continue;
-			}
-			if (row == Grid::xSize - 1 && col == 0) {
-				cout << helperConstants::topRightBorder;
-				continue;
-			}
-			if (row == 0 && col == 0) {
-				cout << helperConstants::topLeftBorder;
-				continue;
-			}
-			if (row == Grid::xSize - 1 || row == 0) {
-				cout << helperConstants::xBorder;
-				continue;
-			}
-			if (col == Grid::ySize - 1 || col == 0) {
-				cout << helperConstants::yBorder;
-				continue;
-			}
-			if (player.xPos == row && player.yPos == col) {
-				cout << player.sprite;
-				continue;
-			}
-			cout << Grid::sprite;
+
+			int vecSecondIndex = row - player.xPos;
+			int vecFirstIndex = col - player.yPos;
+
+			if (
+				vecFirstIndex >= 0 &&
+				vecSecondIndex >= 0 &&
+				vecFirstIndex < player.sprite.size() &&
+				vecSecondIndex < player.sprite[vecFirstIndex].size()
+			) {
+                cout << player.sprite[vecFirstIndex][vecSecondIndex];
+                continue;
+            }
+
+            cout << Grid::sprite;
 		}
 		cout << "\n";
 	}
+}
+
+bool Grid::renderBorder(int col, int row) {
+	const bool firstCol = col == 0;
+	const bool lastCol = col == Grid::ySize - 1;
+	const bool firstRow = row == 0;
+	const bool lastRow = row == Grid::xSize - 1;
+
+	if (firstRow && lastCol) {
+		cout << helperConstants::botLeftBorder;
+		return true;
+	}
+	if (lastRow && lastCol) {
+		cout << helperConstants::botRightBorder;
+		return true;
+	}
+	if (lastRow && firstCol) {
+		cout << helperConstants::topRightBorder;
+		return true;
+	}
+	if (firstRow && firstCol) {
+		cout << helperConstants::topLeftBorder;
+		return true;
+	}
+	if (firstRow || lastRow) {
+		cout << helperConstants::xBorder;
+		return true;
+	}
+	if (firstCol || lastCol) {
+		cout << helperConstants::yBorder;
+		return true;
+	}
+
+	return false;
 }

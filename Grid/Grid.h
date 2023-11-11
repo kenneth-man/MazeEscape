@@ -10,6 +10,7 @@ struct Grid {
 	int ySize;
 	string sprite;
 	void render(const Player &player);
+	bool renderBorder(int, int);
 };
 
 #endif

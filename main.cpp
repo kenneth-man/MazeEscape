@@ -40,13 +40,14 @@ int main() {
 }
 
 // TODO:
+// prevent compile warning at line 27,28 in `Grid\Grid.cpp`
+// walking animations (up, down, left, right, diagonals, reset e.g. on a timer after 2 seconds)
+// collision detection (walls, structures)
 // add double buffering to prevent flickering when player moves
 // boundaries checking (outside area) e.g. if past x position 120, then update player position to n - 120 ?
 // figure out how to display things at defined coordinates e.g. structure at position 320,40
 // different terrain character map
 // player starting position refactor
-// improve player sprite
-// collision detection (walls, structures)
 // enemies chasing (timer? updates without needing player input?)
 // raw string puzzles
 // player attack
@@ -57,3 +58,4 @@ int main() {
 // create struct for while loop movement
 // title screen and instructions (ensure chcp 65001 to choose UTF-8 encoding and terminal font is Cascadia mono)
 // prevent `displayString` displaying `R""`
+// improve player sprite
