@@ -40,7 +40,6 @@ int main() {
 }
 
 // TODO:
-// prevent compile warning at line 27,28 in `Grid\Grid.cpp`
 // walking animations (up, down, left, right, diagonals, reset e.g. on a timer after 2 seconds)
 // collision detection (walls, structures)
 // add double buffering to prevent flickering when player moves

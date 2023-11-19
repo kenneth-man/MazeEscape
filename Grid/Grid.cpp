@@ -14,8 +14,8 @@ void Grid::render(const Player &player) {
 				continue;
 			}
 
-			int vecSecondIndex = row - player.xPos;
-			int vecFirstIndex = col - player.yPos;
+			size_t vecSecondIndex = row - player.xPos;
+			size_t vecFirstIndex = col - player.yPos;
 
 			if (
 				vecFirstIndex >= 0 &&
