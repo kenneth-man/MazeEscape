@@ -46,6 +46,7 @@ int main() {
 }
 
 // TODO:
+// detect if windows, mac or linux os, and use the appropriate `SetConsoleCursorPosition`-like function for windows so `clearScreen` is compatible
 // walking animations (up, down, left, right, diagonals, reset e.g. on a timer after 2 seconds)
 // collision detection (walls, structures)
 // boundaries checking (outside area) e.g. if past x position 120, then update player position to n - 120 ?
