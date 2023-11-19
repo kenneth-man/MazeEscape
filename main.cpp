@@ -1,3 +1,5 @@
+// #include <chrono>
+// #include <thread>
 #include <iostream>
 #include <conio.h>
 #include "./Grid/Grid.h"
@@ -14,17 +16,21 @@ int main() {
 	TitleScreen titleScreen {};
 	// single quotes for `char`, double quotes for `std::string`
 	char input {'0'};
-	bool gameStart {true};
+	bool gameStart {false};
 	
 	while (input != 'q') {
-		if (gameStart) {
+		if (!gameStart) {
 			titleScreen.render();
 
 			input = getch();
 
 			if (input == ' ') {
-				gameStart = false;
+				gameStart = true;
 			}
+
+			// clear entire temrinal to make sure instructions aren't shown during gameplay
+			// because instructions have a larger height than the grid
+			system("CLS");
 
 			continue;
 		}
@@ -42,7 +48,6 @@ int main() {
 // TODO:
 // walking animations (up, down, left, right, diagonals, reset e.g. on a timer after 2 seconds)
 // collision detection (walls, structures)
-// add double buffering to prevent flickering when player moves
 // boundaries checking (outside area) e.g. if past x position 120, then update player position to n - 120 ?
 // figure out how to display things at defined coordinates e.g. structure at position 320,40
 // different terrain character map
