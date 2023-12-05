@@ -11,7 +11,7 @@ struct Grid {
 	string sprite;
 	void clearScreen();
 	void render(const Player &player);
-	string renderBorder(int, int);
+	string renderBorder(int col, int row);
 };
 
 #endif
