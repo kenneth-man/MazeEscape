@@ -1,5 +1,5 @@
-// #include <chrono>
-// #include <thread>
+#include <thread>
+#include <mutex>
 #include <iostream>
 #include <conio.h>
 #include "./Grid/Grid.h"
@@ -17,14 +17,15 @@ int main() {
 	// single quotes for `char`, double quotes for `std::string`
 	char input { helperConstants::defaultInput };
 	bool gameStart { false };
+	mutex m;
 	
-	while (input != 'q') {
+	while (input != helperConstants::inputQuit) {
 		if (!gameStart) {
 			titleScreen.render();
 
 			input = getch();
 
-			if (input == ' ') {
+			if (input == helperConstants::inputSpace) {
 				gameStart = true;
 			}
 
@@ -34,6 +35,9 @@ int main() {
 
 			continue;
 		}
+
+		thread t1(&Actions::standPlayer, &actions, ref(player), ref(grid), ref(m));
+		t1.detach();
 
 		grid.render(player);
 
@@ -45,9 +49,13 @@ int main() {
     return 0;
 }
 
+
+
 // TODO:
+// walking animations refactor `calcNextPlayerSprite` calls to pass in a single vector of sprites
+// walking animations for left, right, up; not just stand down + refactor constants into string and numbers
+
 // detect if windows, mac or linux os, and use the appropriate `SetConsoleCursorPosition`-like function for windows so `clearScreen` is compatible
-// walking animations refactor `calcNextPlayerSprite` calls to pass in a single vector of sprites (reset on a timer after 1 second)
 // collision detection (walls, structures)
 // boundaries checking (outside area) e.g. if past x position 120, then update player position to n - 120 ?
 // figure out how to display things at defined coordinates e.g. structure at position 320,40
@@ -57,6 +65,8 @@ int main() {
 // raw string puzzles
 // player attack
 // player lives; display on screen
+
+
 
 // COMPLETE:
 // add border to game window

@@ -32,6 +32,8 @@ namespace helperConstants {
 	)"};
 	const string terrain = "█";
 	const char defaultInput = '0';
+	const char inputQuit = 'q';
+	const char inputSpace = ' ';
 	const char inputUp = 'w';
 	const char inputLeft = 'a';
 	const char inputDown = 's';
@@ -44,12 +46,12 @@ namespace helperConstants {
 	const vector<vector<string>> playerUpMoveInitial = {
 		{ "_", "◓", "_" },
 		{ "╵", "|", "|" },
-		{ "/", " ", "\\"}
+		{ "|", " ", "╵"}
 	};
 	const vector<vector<string>> playerUpMoveFinal = {
 		{ "_", "◓", "_" },
 		{ "|", "|", "╵" },
-		{ "/", " ", "\\"}
+		{ "╵", " ", "|"}
 	};
 	const vector<vector<string>> playerLeftStand = {
 		{ "_", "◐", "_" },
@@ -74,12 +76,12 @@ namespace helperConstants {
 	const vector<vector<string>> playerDownMoveInitial = {
 		{ "_", "◒", "_" },
 		{ "╵", "|", "|" },
-		{ "/", " ", "\\"}
+		{ "|", " ", "╵"}
 	};
 	const vector<vector<string>> playerDownMoveFinal = {
 		{ "_", "◒", "_" },
 		{ "|", "|", "╵" },
-		{ "/", " ", "\\"}
+		{ "╵", " ", "|"}
 	};
 	const vector<vector<string>> playerRightStand = {
 		{ "_", "◑", "_" },

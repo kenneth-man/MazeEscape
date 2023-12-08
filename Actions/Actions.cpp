@@ -1,5 +1,7 @@
 #include "./Actions.h"
 
+using namespace std;
+
 void Actions::movePlayer(Player &player, char input) {
 	switch(input) {
 		case helperConstants::inputUp:
@@ -37,6 +39,18 @@ void Actions::movePlayer(Player &player, char input) {
 		default:
 			break;
 	}
+}
+
+void Actions::standPlayer(Player &player, Grid &grid, mutex &m) {
+	m.lock();
+
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+	player.sprite = helperConstants::playerDownStand;
+
+	grid.render(player);
+
+	m.unlock();
 }
 
 vector<vector<string>> Actions::calcNextPlayerSprite(
