@@ -2,6 +2,8 @@
 #define _CONSTANTS_
 #include <string>
 #include <vector>
+#include "./interfaces.h"
+#include "./types.h"
 
 using namespace std;
 
@@ -38,66 +40,6 @@ namespace helperConstants {
 	const char inputLeft = 'a';
 	const char inputDown = 's';
 	const char inputRight = 'd';
-	const vector<vector<string>> playerUpStand = {
-		{ "_", "◓", "_" },
-		{ "|", "|", "|" },
-		{ "/", " ", "\\"}
-	};
-	const vector<vector<string>> playerUpMoveInitial = {
-		{ "_", "◓", "_" },
-		{ "╵", "|", "|" },
-		{ "|", " ", "╵"}
-	};
-	const vector<vector<string>> playerUpMoveFinal = {
-		{ "_", "◓", "_" },
-		{ "|", "|", "╵" },
-		{ "╵", " ", "|"}
-	};
-	const vector<vector<string>> playerLeftStand = {
-		{ "_", "◐", "_" },
-		{ "/", "|", "\\" },
-		{ "|", " ", "|"}
-	};
-	const vector<vector<string>> playerLeftMoveInitial = {
-		{ "_", "◐", "_" },
-		{ "/", "|", "|" },
-		{ "/", " ", "\\"}
-	};
-	const vector<vector<string>> playerLeftMoveFinal = {
-		{ "_", "◐", "_" },
-		{ "\\", "|", "\\" },
-		{ "\\", " ", "\\"}
-	};
-	const vector<vector<string>> playerDownStand = {
-		{ "_", "◒", "_" },
-		{ "|", "|", "|" },
-		{ "/", " ", "\\"}
-	};
-	const vector<vector<string>> playerDownMoveInitial = {
-		{ "_", "◒", "_" },
-		{ "╵", "|", "|" },
-		{ "|", " ", "╵"}
-	};
-	const vector<vector<string>> playerDownMoveFinal = {
-		{ "_", "◒", "_" },
-		{ "|", "|", "╵" },
-		{ "╵", " ", "|"}
-	};
-	const vector<vector<string>> playerRightStand = {
-		{ "_", "◑", "_" },
-		{ "/", "|", "\\" },
-		{ "|", " ", "|"}
-	};
-	const vector<vector<string>> playerRightMoveInitial = {
-		{ "_", "◑", "_" },
-		{ "|", "|", "\\" },
-		{ "/", " ", "\\"}
-	};
-	const vector<vector<string>> playerRightMoveFinal = {
-		{ "_", "◑", "_" },
-		{ "/", "|", "/" },
-		{ "/", " ", "/"}
-	};
 	const string xBorder = "║";
 	const string yBorder = "═";
 	const string topLeftBorder = "╔";

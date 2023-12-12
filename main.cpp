@@ -5,13 +5,14 @@
 #include "./Grid/Grid.h"
 #include "./Actions/Actions.h"
 #include "./TitleScreen/TitleScreen.h"
-#include "helpers/constants/constants.h"
+#include "./helpers/constants/constants.h"
+#include "./helpers/constants/playerSprites.h"
 
 using namespace std;
 
 int main() {
     Grid grid { 120, 20, helperConstants::terrain };
-	Player player { 2, 4, helperConstants::playerDownStand };
+	Player player { 2, 4, playerSprites::standDown };
 	Actions actions {};
 	TitleScreen titleScreen {};
 	// single quotes for `char`, double quotes for `std::string`
@@ -36,7 +37,7 @@ int main() {
 			continue;
 		}
 
-		thread t1(&Actions::standPlayer, &actions, ref(player), ref(grid), ref(m));
+		thread t1(&Actions::standPlayer, &actions, ref(player), ref(grid), ref(m), input);
 		t1.detach();
 
 		grid.render(player);
@@ -52,8 +53,7 @@ int main() {
 
 
 // TODO:
-// walking animations refactor `calcNextPlayerSprite` calls to pass in a single vector of sprites
-// walking animations for left, right, up; not just stand down + refactor constants into string and numbers
+// BUG: sometimes the player gets reset to standing for less than a second if spamming the movement keys
 
 // detect if windows, mac or linux os, and use the appropriate `SetConsoleCursorPosition`-like function for windows so `clearScreen` is compatible
 // collision detection (walls, structures)
