@@ -9,9 +9,9 @@ struct Grid {
 	int xSize;
 	int ySize;
 	string sprite;
-	void clearScreen();
-	void render(const Player &player);
-	string renderBorder(int col, int row);
+	void clearScreen() const;
+	void render(const Player &player) const;
+	string renderBorder(int col, int row) const;
 };
 
 #endif

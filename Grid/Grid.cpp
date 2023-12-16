@@ -7,14 +7,14 @@ using namespace std;
 
 // moving the cursor to terminal's top left
 // 'system('CLS') caused flickering before drawing to the terminal
-void Grid::clearScreen() {	
+void Grid::clearScreen() const {	
 	COORD cursorPosition;
 	cursorPosition.X = 0;
 	cursorPosition.Y = 0;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPosition);
 }
 
-void Grid::render(const Player &player) {
+void Grid::render(const Player &player) const {
 	// 'this' is implicitly used here... e.g. this->clearScreen(); it is being called on an instance of the Grid class (this)
 	// can only call members of a class without an instance if it's in that class '.cpp' file
 	// to call outside of the class '.cpp' file without an instance, make it a static method
@@ -52,7 +52,7 @@ void Grid::render(const Player &player) {
 	cout << output;
 }
 
-string Grid::renderBorder(int col, int row) {
+string Grid::renderBorder(int col, int row) const {
 	const bool firstCol = col == 0;
 	const bool lastCol = col == Grid::ySize - 1;
 	const bool firstRow = row == 0;

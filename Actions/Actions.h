@@ -11,9 +11,9 @@
 
 struct Actions {
 	void movePlayer(Player &player, char input);
-	void standPlayer(Player &player, Grid &grid, mutex &mut, char input);
+	void standPlayer(Player &player, const Grid &grid, mutex &mut, char input);
 	vector<vector<string>> calcNextPlayerSprite(
-		Player &player,
+		const Player &player,
 		const vector<PlayerSprite> &playerSprites
 	);
 };
