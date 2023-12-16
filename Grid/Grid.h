@@ -1,6 +1,7 @@
 #ifndef _GRID_
 #define _GRID_
 #include <string>
+#include <iostream>
 #include "../Player/Player.h"
 
 using namespace std;
