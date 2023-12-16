@@ -56,6 +56,7 @@ void Actions::standPlayer(Player &player, const Grid &grid, mutex &mut, char inp
 				player.sprite = playerSprites::stand[Directions::RIGHT];
 				break;
 			default:
+				player.sprite = playerSprites::stand[Directions::DOWN];
 				break;
 		}
 
