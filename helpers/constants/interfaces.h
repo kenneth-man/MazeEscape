@@ -11,4 +11,12 @@ using namespace std;
 	// vector<PlayerSprite> playerStandSprites;
 // };
 
+// struct IMainCommandArgs {
+//     std::vector<int> dimensions;
+//     int error;
+
+//     IMainCommandArgs(const vector<int> &d) : dimensions{d}, error{0} {}
+//     IMainCommandArgs(const int e) : dimensions{}, error{e} {}
+// };
+
 #endif

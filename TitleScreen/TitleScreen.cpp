@@ -1,4 +1,3 @@
-#include <iostream>
 #include "./TitleScreen.h"
 #include "../helpers/functions/functions.h"
 #include "../helpers/constants/constants.h"

@@ -1,5 +1,7 @@
 #ifndef _GRID_
 #define _GRID_
+#include <iostream>
+#include <windows.h>
 #include <string>
 #include "../Player/Player.h"
 

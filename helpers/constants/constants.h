@@ -71,6 +71,13 @@ namespace helperConstants {
 (_ \|`   _,/_  /  \_            ,--`
  \( `   <.,../`     `-.._   _,-`
     )"};
+	vector<string> invalidArguments {
+		"Must provide 2 arguments for the terminal height and width",
+		"For example: `./main.exe 120 150`"
+	};
+	vector<string> outOfRange {
+		"Argument/s for the terminal height and width is out of range for type `int`"
+	};
 }
 
 #endif

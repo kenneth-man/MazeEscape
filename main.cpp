@@ -7,11 +7,17 @@
 #include "./TitleScreen/TitleScreen.h"
 #include "./helpers/constants/constants.h"
 #include "./helpers/constants/playerSprites.h"
+#include "./helpers/functions/functions.h"
 
 using namespace std;
 
 int main() {
-    Grid grid { 120, 20, helperConstants::terrain };
+	//const IMainCommandArgs mainCommandArgs = helperFunctions::useMainCommandArgs(argc, argv);
+	//cout << mainCommandArgs.dimensions[0] << " " << mainCommandArgs.dimensions[1] << " " << mainCommandArgs.error << '\n';
+	//cout << argv[0];
+    //Grid grid { mainCommandArgs.dimensions[0], mainCommandArgs.dimensions[1], helperConstants::terrain };
+
+	Grid grid { 120, 20, helperConstants::terrain };
 	Player player { 2, 4, playerSprites::standDown };
 	Actions actions {};
 	TitleScreen titleScreen {};
