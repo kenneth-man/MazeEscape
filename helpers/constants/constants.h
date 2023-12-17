@@ -20,6 +20,12 @@ namespace helperConstants {
 :::     ::   ::   :::  :: ::::   :: ::::   :: ::::  :::: ::    ::: :::   ::   :::   ::       :: ::::  
  :      :     :   : :  : :: : :  : :: ::   : :: ::   :: : :     :: :: :   :   : :   :        : :: ::
 	)"};
+	const string error {R"(
+ ___                 
+| __|_ _ _ _ ___ _ _ 
+| _|| '_| '_/ _ \ '_|
+|___|_| |_| \___/_|  
+	)"};
 	const string titleDescription {R"(
 - Press `SPACEBAR` to start the game
 - Press `Q` at any time to quit the game

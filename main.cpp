@@ -56,7 +56,6 @@ int main(int argc, char* argv[]) {
 
 
 // TODO:
-// nicer formatting of `displayError` in terminal
 // INVESTIGATION: why failing compile when putting `const vector<string> invalidArguments` into `helperConstants`?
 // INVESTIGATION: why cannot use `std::optional`?
 

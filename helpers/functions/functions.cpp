@@ -9,9 +9,13 @@ void helperFunctions::displayString(string input) {
 void helperFunctions::exitProgramWithError(const vector<string> &errorMessages) {
 	if (errorMessages.size() == 0) return;
 
+	displayString(helperConstants::error);
+
 	for(string e : errorMessages) {
-		cerr << e << '\n';
+		displayString(e);
 	}
+
+	displayString("");
 
 	exit(1);
 }
