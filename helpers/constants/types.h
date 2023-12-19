@@ -5,6 +5,6 @@
 
 using namespace std;
 
-using PlayerSprite = vector<vector<string>>;
+using stringMatrix2d = vector<vector<string>>;
 
 #endif

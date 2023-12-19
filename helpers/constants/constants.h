@@ -38,20 +38,22 @@ namespace helperConstants {
 	Set it manually with `chcp 65001`)
 - NB: Make sure your terminal is using the font family `Cascadia mono`
 	)"};
-	const string terrain = "█";
-	const char defaultInput = '0';
-	const char inputQuit = 'q';
-	const char inputSpace = ' ';
-	const char inputUp = 'w';
-	const char inputLeft = 'a';
-	const char inputDown = 's';
-	const char inputRight = 'd';
-	const string xBorder = "║";
-	const string yBorder = "═";
-	const string topLeftBorder = "╔";
-	const string topRightBorder = "╗";
-	const string botLeftBorder = "╚";
-	const string botRightBorder = "╝";
+	const char defaultInput {'0'};
+	const char inputQuit {'q'};
+	const char inputSpace {' '};
+	const char inputUp {'w'};
+	const char inputLeft {'a'};
+	const char inputDown {'s'};
+	const char inputRight {'d'};
+	const string falsyString {""};
+	const string defaultTerrain {" "};
+	const string wall {"█"};
+	const string xBorder {"║"};
+	const string yBorder {"═"};
+	const string topLeftBorder {"╔"};
+	const string topRightBorder {"╗"};
+	const string botLeftBorder {"╚"};
+	const string botRightBorder {"╝"};
 	const string demon {R"(
 		                                             ,--,  ,.-.
                ,                   \,       '-,-`,'-.' | ._

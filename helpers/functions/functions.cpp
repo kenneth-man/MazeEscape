@@ -11,7 +11,7 @@ void helperFunctions::exitProgramWithError(const vector<string> &errorMessages) 
 
 	displayString(helperConstants::error);
 
-	for(string e : errorMessages) {
+	for (string e : errorMessages) {
 		displayString(e);
 	}
 

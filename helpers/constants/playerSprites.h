@@ -7,67 +7,67 @@
 using namespace std;
 
 namespace playerSprites {
-	const PlayerSprite standUp = {
+	const stringMatrix2d standUp = {
 		{ "_", "◓", "_" },
 		{ "|", "|", "|" },
 		{ "/", " ", "\\"}
 	};
-	const PlayerSprite moveUpInitial = {
+	const stringMatrix2d moveUpInitial = {
 		{ "_", "◓", "_" },
 		{ "╵", "|", "|" },
 		{ "|", " ", "╵"}
 	};
-	const PlayerSprite moveUpFinal = {
+	const stringMatrix2d moveUpFinal = {
 		{ "_", "◓", "_" },
 		{ "|", "|", "╵" },
 		{ "╵", " ", "|"}
 	};
-	const PlayerSprite standLeft = {
+	const stringMatrix2d standLeft = {
 		{ "_", "◐", "_" },
 		{ "/", "|", "\\" },
 		{ "|", " ", "|"}
 	};
-	const PlayerSprite moveLeftInitial = {
+	const stringMatrix2d moveLeftInitial = {
 		{ "_", "◐", "_" },
 		{ "/", "|", "|" },
 		{ "/", " ", "\\"}
 	};
-	const PlayerSprite moveLeftFinal = {
+	const stringMatrix2d moveLeftFinal = {
 		{ "_", "◐", "_" },
 		{ "\\", "|", "\\" },
 		{ "\\", " ", "\\"}
 	};
-	const PlayerSprite standDown = {
+	const stringMatrix2d standDown = {
 		{ "_", "◒", "_" },
 		{ "|", "|", "|" },
 		{ "/", " ", "\\"}
 	};
-	const PlayerSprite moveDownIntial = {
+	const stringMatrix2d moveDownIntial = {
 		{ "_", "◒", "_" },
 		{ "╵", "|", "|" },
 		{ "|", " ", "╵"}
 	};
-	const PlayerSprite moveDownFinal = {
+	const stringMatrix2d moveDownFinal = {
 		{ "_", "◒", "_" },
 		{ "|", "|", "╵" },
 		{ "╵", " ", "|"}
 	};
-	const PlayerSprite standRight = {
+	const stringMatrix2d standRight = {
 		{ "_", "◑", "_" },
 		{ "/", "|", "\\" },
 		{ "|", " ", "|"}
 	};
-	const PlayerSprite moveRightInitial = {
+	const stringMatrix2d moveRightInitial = {
 		{ "_", "◑", "_" },
 		{ "|", "|", "\\" },
 		{ "/", " ", "\\"}
 	};
-	const PlayerSprite moveRightFinal = {
+	const stringMatrix2d moveRightFinal = {
 		{ "_", "◑", "_" },
 		{ "/", "|", "/" },
 		{ "/", " ", "/"}
 	};
-	const vector<vector<PlayerSprite>> move {
+	const vector<vector<stringMatrix2d>> move {
 		{
 			moveUpInitial,
 			moveUpFinal
@@ -85,7 +85,7 @@ namespace playerSprites {
 			moveRightFinal
 		},
 	};
-	const vector<PlayerSprite> stand {
+	const vector<stringMatrix2d> stand {
 		standUp,
 		standLeft,
 		standDown,

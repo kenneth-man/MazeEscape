@@ -3,19 +3,27 @@
 #include <string>
 #include <vector>
 #include "./types.h"
+#include "./enums.h"
 
 using namespace std;
 
-// const struct IExample {
-	// vector<vector<PlayerSprite>> playerMoveSprites;
-	// vector<PlayerSprite> playerStandSprites;
+// struct IExample {
+//	vector<vector<stringMatrix2d>> playerMoveSprites;
+//	vector<stringMatrix2d> playerStandSprites;
 // };
 
-// const struct IAnotherExample {
-//     vector<int> dimensions;
-//     int dimension;
-//     IAnotherExample(const vector<int> &d) : dimensions{d}, dimension{} {}
-//     IAnotherExample(const int d) : dimensions{}, dimension{d} {}
+// struct IAnotherExample {
+//	vector<int> dimensions;
+//	int dimension;
+//	IAnotherExample(const vector<int> &d) : dimensions{d}, dimension{} {}
+//	IAnotherExample(const int d) : dimensions{}, dimension{d} {}
 // };
+
+struct IShouldBoundaryUpdate {
+	Directions updateDirection;
+    bool shouldUpdate;
+    IShouldBoundaryUpdate(Directions d) : updateDirection{d}, shouldUpdate{true} {}
+    IShouldBoundaryUpdate() : shouldUpdate{false} {}
+};
 
 #endif

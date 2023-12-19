@@ -8,13 +8,14 @@
 #include "../helpers/constants/constants.h"
 #include "../helpers/constants/playerSprites.h"
 #include "../helpers/constants/enums.h"
+#include "../helpers/constants/types.h"
 
 struct Actions {
 	void movePlayer(Player &player, char input);
-	void standPlayer(Player &player, const Grid &grid, mutex &mut, char input);
-	vector<vector<string>> calcNextPlayerSprite(
+	void standPlayer(Player &player, Grid &grid, mutex &mut, char input);
+	stringMatrix2d calcNextPlayerSprite(
 		const Player &player,
-		const vector<PlayerSprite> &playerSprites
+		const vector<stringMatrix2d> &playerSprites
 	);
 };
 

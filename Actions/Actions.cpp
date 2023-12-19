@@ -37,7 +37,7 @@ void Actions::movePlayer(Player &player, char input) {
 	}
 }
 
-void Actions::standPlayer(Player &player, const Grid &grid, mutex &mut, char input) {
+void Actions::standPlayer(Player &player, Grid &grid, mutex &mut, char input) {
 	// `mut.try_lock()` attempts to lock the mutex, if another thread has locked the mutex already, do nothing
 	if(mut.try_lock()) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -66,9 +66,9 @@ void Actions::standPlayer(Player &player, const Grid &grid, mutex &mut, char inp
 	}
 }
 
-vector<vector<string>> Actions::calcNextPlayerSprite(
+stringMatrix2d Actions::calcNextPlayerSprite(
 	const Player &player,
-	const vector<PlayerSprite> &playerSprites
+	const vector<stringMatrix2d> &playerSprites
 ) {
 	return player.sprite == playerSprites[0] ? playerSprites[1] : playerSprites[0];
 }
