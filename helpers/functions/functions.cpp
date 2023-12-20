@@ -53,3 +53,7 @@ vector<int> helperFunctions::useMainArgs(
 
 	return gridDimensions;
 }
+
+bool helperFunctions::isPositive(int number) {
+	return number > 0;
+}

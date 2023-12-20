@@ -60,7 +60,7 @@ void Actions::standPlayer(Player &player, Grid &grid, mutex &mut, char input) {
 				break;
 		}
 
-		grid.render(player);
+		grid.render(player, true);
 
 		mut.unlock();
 	}

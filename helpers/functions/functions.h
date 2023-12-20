@@ -11,6 +11,7 @@ namespace helperFunctions {
 	void displayString(string input);
 	void exitProgramWithError(const vector<string> &errorMessages);
 	vector<int> useMainArgs(int argc, char* argv[]);
+	bool isPositive(int number);
 }
 
 #endif

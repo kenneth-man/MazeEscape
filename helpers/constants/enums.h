@@ -10,6 +10,7 @@ enum Directions {
 	LEFT,
 	DOWN,
 	RIGHT,
+	NULL_DIRECTION,
 };
 
 #endif
