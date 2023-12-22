@@ -24,6 +24,7 @@ struct Grid {
 	Directions checkShouldBoundaryUpdate(int playerPos, int screen, int size, const Directions &dir1, const Directions &dir2);
 	void calcBoundaryUpdate(const Directions &direction);
 	void ignoreScreenZero(int &screen, int update);
+	string renderSpriteDimension(const stringMatrix2d &sprite, int xPos, int yPos, int col, int row);
 	int calcSpriteDimension(int index, int playerPos, int screen, int size);
 };
 

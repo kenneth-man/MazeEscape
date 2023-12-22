@@ -28,25 +28,17 @@ void Grid::render(const Player &player, bool playerStand) {
 		}
 	}
 
-	for (int col = 0; col < Grid::ySize; ++col) {
-		for (int row = 0; row < Grid::xSize; ++row) {
-			string border = Grid::renderBorder(col, row);
-
+	for (int col {0}; col < Grid::ySize; ++col) {
+		for (int row {0}; row < Grid::xSize; ++row) {
+			string border {Grid::renderBorder(col, row)};
 			if (border != helperConstants::falsyString) {
 				output += border;
 				continue;
 			}
 
-			size_t dim1 = Grid::calcSpriteDimension(col, player.yPos, Grid::yScreen, Grid::ySize);
-			size_t dim2 = Grid::calcSpriteDimension(row, player.xPos, Grid::xScreen, Grid::xSize);
-
-			if (
-				dim1 >= 0 &&
-				dim2 >= 0 &&
-				dim1 < player.sprite.size() &&
-				dim2 < player.sprite[dim1].size()
-			) {
-                output += player.sprite[dim1][dim2];
+			string playerDim {Grid::renderSpriteDimension(player.sprite, player.xPos, player.yPos, col, row)};
+			if (playerDim != helperConstants::falsyString) {
+                output += playerDim;
                 continue;
             }
 
@@ -59,10 +51,10 @@ void Grid::render(const Player &player, bool playerStand) {
 }
 
 string Grid::renderBorder(int col, int row) {
-	const bool firstCol = col == 0;
-	const bool lastCol = col == Grid::ySize - 1;
-	const bool firstRow = row == 0;
-	const bool lastRow = row == Grid::xSize - 1;
+	const bool firstCol {col == 0};
+	const bool lastCol {col == Grid::ySize - 1};
+	const bool firstRow {row == 0};
+	const bool lastRow {row == Grid::xSize - 1};
 
 	if (firstRow && lastCol) {
 		return helperConstants::botLeftBorder;
@@ -87,13 +79,29 @@ string Grid::renderBorder(int col, int row) {
 }
 
 IShouldBoundaryUpdate Grid::shouldBoundaryUpdate(int playerXPos, int playerYPos) {
-	const Directions xDirection {checkShouldBoundaryUpdate(playerXPos, Grid::xScreen, Grid::xSize, Directions::LEFT, Directions::RIGHT)};
+	const Directions xDirection {
+		checkShouldBoundaryUpdate(
+			playerXPos,
+			Grid::xScreen,
+			Grid::xSize,
+			Directions::LEFT,
+			Directions::RIGHT
+		)
+	};
 
 	if (xDirection != Directions::NULL_DIRECTION) {
 		return IShouldBoundaryUpdate(xDirection);
 	}
 
-	const Directions yDirection {checkShouldBoundaryUpdate(playerYPos, Grid::yScreen, Grid::ySize, Directions::UP, Directions::DOWN)};
+	const Directions yDirection {
+		checkShouldBoundaryUpdate(
+			playerYPos,
+			Grid::yScreen,
+			Grid::ySize,
+			Directions::UP,
+			Directions::DOWN
+		)
+	};
 
 	if (yDirection != Directions::NULL_DIRECTION) {
 		return IShouldBoundaryUpdate(yDirection);
@@ -145,7 +153,34 @@ void Grid::ignoreScreenZero(int &screen, int update) {
 	screen = newScreen == 0 ? update : newScreen;
 }
 
-int Grid::calcSpriteDimension(int index, int playerPos, int screen, int size) {
+string Grid::renderSpriteDimension(
+	const stringMatrix2d &sprite,
+	int xPos,
+	int yPos,
+	int col,
+	int row
+) {
+	int dim1 {Grid::calcSpriteDimension(col, yPos, Grid::yScreen, Grid::ySize)};
+	int dim2 {Grid::calcSpriteDimension(row, xPos, Grid::xScreen, Grid::xSize)};
+
+	if (
+		dim1 >= 0 &&
+		dim2 >= 0 &&
+		dim1 < static_cast<int>(sprite.size()) &&
+		dim2 < static_cast<int>(sprite[dim1].size())
+	) {
+		return sprite[dim1][dim2];
+    }
+
+	return helperConstants::falsyString;
+}
+
+int Grid::calcSpriteDimension(
+	int index,
+	int playerPos,
+	int screen,
+	int size
+) {
 	bool isScreenPositive {helperFunctions::isPositive(screen)};
 
 	if (isScreenPositive) {

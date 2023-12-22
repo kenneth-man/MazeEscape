@@ -12,14 +12,13 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-	const vector<int> MainArgs = helperFunctions::useMainArgs(argc, argv);
-	// single quotes for `char`, double quotes for `std::string`
-	char input { helperConstants::defaultInput };
-	bool gameStart { false };
+	const vector<int> MainArgs{helperFunctions::useMainArgs(argc, argv)};
+	char input {helperConstants::defaultInput};
+	bool gameStart {false};
 	mutex m;
 
-    Grid grid { MainArgs[0], MainArgs[1], helperConstants::defaultTerrain };
-	Player player { MainArgs[0] / 2, MainArgs[1] / 2, playerSprites::standDown };
+    Grid grid {MainArgs[0], MainArgs[1], helperConstants::defaultTerrain};
+	Player player {MainArgs[0] / 2, MainArgs[1] / 2, playerSprites::standDown};
 	Actions actions {};
 	TitleScreen titleScreen {};
 	
@@ -45,6 +44,11 @@ int main(int argc, char* argv[]) {
 
 		grid.render(player);
 
+		cout << "xPos " << player.xPos << endl;
+		cout << "yPos " << player.yPos << endl;
+		cout << "xScreen " << grid.xScreen << endl;
+		cout << "yScreen " << grid.yScreen << endl;
+
 		input = getch();
 
 		actions.movePlayer(player, input);
@@ -55,18 +59,22 @@ int main(int argc, char* argv[]) {
 
 
 
-// TODO:
-// !!! BUG: Actions::standPlayer causing a render bug if holding down the movement keys for a long time; extra borders are displaying; lines 43-44 in `main.cpp`
-// - random generation (coords) of walls, structures; figure out how to display things at defined coordinates e.g. structure at position 320, 40
+// (TODO)
+// # - random generation (coords) of walls, structures; figure out how to display things at defined coordinates e.g. structure at position 320, 40
+// - hud with game info and good looking ascii
 // - randomized dirt terrain with different floor character map
 // - collision detection of walls, structures
 // - player starting position refactor
-// !!! BUG: sometimes the player gets reset to standing for less than a second if spamming the movement keys
-// ??? INVESTIGATION: why failing compile when putting `const vector<string> invalidArguments` into `helperConstants`?
-// ??? INVESTIGATION: why cannot use `std::optional`?
 // - detect if windows, mac or linux os, and use the appropriate `SetConsoleCursorPosition`-like function for windows so `clearScreen` is compatible
 // - enemies chasing if get too close (on a timer? updates per second without needing player input?)
 // - raw string puzzles
 // - player attack; enemy health; to kill takes a certain amount of attacks
 // - player lives; display on screen
 // - player block
+
+// (BUGS/INVESTIGATIONS)
+// # ??? INVESTIGATION: why cout shows trailing digit from previous couts? e.g. xPos, yPos, xScreen, yScreen...
+// # !!! BUG: Actions::standPlayer causing a render bug if holding down the movement keys for a long time; extra borders are displaying; lines 43-44 in `main.cpp`
+// !!! BUG: sometimes the player gets reset to standing for less than a second if spamming the movement keys
+// ??? INVESTIGATION: why failing compile when putting `const vector<string> invalidArguments` into `helperConstants`?
+// ??? INVESTIGATION: why cannot use `std::optional`?

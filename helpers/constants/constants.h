@@ -38,6 +38,7 @@ namespace helperConstants {
 	Set it manually with `chcp 65001`)
 - NB: Make sure your terminal is using the font family `Cascadia mono`
 	)"};
+	// single quotes for `char`, double quotes for `std::string`
 	const char defaultInput {'0'};
 	const char inputQuit {'q'};
 	const char inputSpace {' '};

@@ -37,7 +37,7 @@ vector<int> helperFunctions::useMainArgs(
 		exitProgramWithError(invalidArguments);
 	}
 
-	for (int i = 1; i < argc; ++i) {
+	for (int i {1}; i < argc; ++i) {
 		int arg;
 
 		try {
