@@ -2,8 +2,12 @@
 #define _FUNCTIONS_
 #include <string>
 #include <vector>
+#include <algorithm>
 #include <iostream>
-#include "../constants/constants.h"
+#include <stdlib.h>
+#include "../constants/rawStrings.h"
+#include "../../NonPlayer/NonPlayer.h"
+#include "../../Player/Player.h"
 
 using namespace std;
 
@@ -12,6 +16,7 @@ namespace helperFunctions {
 	void exitProgramWithError(const vector<string> &errorMessages);
 	vector<int> useMainArgs(int argc, char* argv[]);
 	bool isPositive(int number);
+	vector<NonPlayer> generateRandomXYPos(const Player &player, const vector<stringMatrix2d> &nonPlayerSprites, int xSize, int ySize);
 }
 
 #endif

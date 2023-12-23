@@ -39,31 +39,31 @@ void Actions::movePlayer(Player &player, char input) {
 
 void Actions::standPlayer(Player &player, Grid &grid, mutex &mut, char input) {
 	// `mut.try_lock()` attempts to lock the mutex, if another thread has locked the mutex already, do nothing
-	if(mut.try_lock()) {
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	// if(mut.try_lock()) {
+	// 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-		switch(input) {
-			case helperConstants::inputUp:
-				player.sprite = playerSprites::stand[Directions::UP];
-				break;
-			case helperConstants::inputLeft:
-				player.sprite = playerSprites::stand[Directions::LEFT];
-				break;
-			case helperConstants::inputDown:
-				player.sprite = playerSprites::stand[Directions::DOWN];
-				break;
-			case helperConstants::inputRight:
-				player.sprite = playerSprites::stand[Directions::RIGHT];
-				break;
-			default:
-				player.sprite = playerSprites::stand[Directions::DOWN];
-				break;
-		}
+	// 	switch(input) {
+	// 		case helperConstants::inputUp:
+	// 			player.sprite = playerSprites::stand[Directions::UP];
+	// 			break;
+	// 		case helperConstants::inputLeft:
+	// 			player.sprite = playerSprites::stand[Directions::LEFT];
+	// 			break;
+	// 		case helperConstants::inputDown:
+	// 			player.sprite = playerSprites::stand[Directions::DOWN];
+	// 			break;
+	// 		case helperConstants::inputRight:
+	// 			player.sprite = playerSprites::stand[Directions::RIGHT];
+	// 			break;
+	// 		default:
+	// 			player.sprite = playerSprites::stand[Directions::DOWN];
+	// 			break;
+	// 	}
 
-		grid.render(player, true);
+	// 	grid.render(player, true);
 
-		mut.unlock();
-	}
+	// 	mut.unlock();
+	// }
 }
 
 stringMatrix2d Actions::calcNextPlayerSprite(

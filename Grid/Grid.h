@@ -18,14 +18,14 @@ struct Grid {
 	int xScreen {1};
 	int yScreen {1};
 	void clearScreen();
-	void render(const Player &player, bool playerStand = false);
+	void render(const Player &player, const vector<NonPlayer> &buildings, bool playerStand = false);
 	string renderBorder(int col, int row);
 	IShouldBoundaryUpdate shouldBoundaryUpdate(int playerXPos, int playerYPos);
 	Directions checkShouldBoundaryUpdate(int playerPos, int screen, int size, const Directions &dir1, const Directions &dir2);
 	void calcBoundaryUpdate(const Directions &direction);
 	void ignoreScreenZero(int &screen, int update);
 	string renderSpriteDimension(const stringMatrix2d &sprite, int xPos, int yPos, int col, int row);
-	int calcSpriteDimension(int index, int playerPos, int screen, int size);
+	int calcSpriteDimension(int index, int pos, int screen, int size);
 };
 
 #endif

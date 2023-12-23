@@ -12,7 +12,7 @@ void Grid::clearScreen() {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPosition);
 }
 
-void Grid::render(const Player &player, bool playerStand) {
+void Grid::render(const Player &player, const vector<NonPlayer> &buildings, bool playerStand) {
 	// 'this' is implicitly used here... e.g. this->clearScreen(); it is being called on an instance of the Grid class (this)
 	// can only call members of a class without an instance if it's in that class '.cpp' file
 	// to call outside of the class '.cpp' file without an instance, make it a static method
@@ -33,6 +33,19 @@ void Grid::render(const Player &player, bool playerStand) {
 			string border {Grid::renderBorder(col, row)};
 			if (border != helperConstants::falsyString) {
 				output += border;
+				continue;
+			}
+
+			bool buildingDimRendered {false};
+			for (NonPlayer building : buildings) {
+				string dim {Grid::renderSpriteDimension(building.sprite, building.xPos, building.yPos, col, row)};
+				if (dim != helperConstants::falsyString) {
+					output += dim;
+					buildingDimRendered = true;
+					break;
+				}
+			}
+			if (buildingDimRendered) {
 				continue;
 			}
 
@@ -177,15 +190,21 @@ string Grid::renderSpriteDimension(
 
 int Grid::calcSpriteDimension(
 	int index,
-	int playerPos,
+	int pos,
 	int screen,
 	int size
 ) {
 	bool isScreenPositive {helperFunctions::isPositive(screen)};
 
 	if (isScreenPositive) {
-		return index - (playerPos - (screen == 1 ? 0 : (screen - 1) * size));
+		return index - (pos - (screen == 1 ? 0 : (screen - 1) * size));
 	}
 
-	return index - (screen == -1 ? playerPos + size : size - (abs(playerPos) % size));
+	return index - (
+		screen == -1
+			? pos + size
+			: (
+				pos > (screen * size) && pos <= ((screen + 1) * size) ? size - (abs(pos) % size) : index + 1
+			)
+		);
 }
