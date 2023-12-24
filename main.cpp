@@ -14,12 +14,14 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-	const vector<int> MainArgs{helperFunctions::useMainArgs(argc, argv)};
+	const vector<int> mainArgs {helperFunctions::useMainArgs(argc, argv)};
+	const int xSize {mainArgs.size() == 0 ? helperConstants::defaultGridXSize : mainArgs[0]};
+	const int ySize {mainArgs.size() == 0 ? helperConstants::defaultGridYSize : mainArgs[1]};
 	char input {helperConstants::defaultInput};
 	bool gameStart {false};
 	mutex m;
-    Grid grid {MainArgs[0], MainArgs[1], helperConstants::defaultTerrain};
-	Player player {MainArgs[0] / 2, MainArgs[1] / 2, playerSprites::standDown};
+    Grid grid {xSize, ySize, helperConstants::defaultTerrain};
+	Player player {xSize / 2, ySize / 2, playerSprites::standDown};
 	Actions actions {};
 	TitleScreen titleScreen {};
 	vector<NonPlayer> buildings {
@@ -74,9 +76,7 @@ int main(int argc, char* argv[]) {
 
 // (TODO)
 // # - random generation (coords) of walls, structures
-//		- fix buildings getting cut out at border (render the rest on next screen or make sure they render certain distance 'X' away from the border?)
-//		- check if need '</=' and '>/=' for line 217 in `Grid\Grid.cpp` (border number calc?)
-//		- try to get operator overloading to work with std::find... line 15 in `NonPlayer\NonPlayer.h`, line 88, 89, 94 in `helpers\functions\functions.cpp`
+//		- refactor `generateRandomXYPos` especially lines 109, 110
 // - hud with game info and good looking ascii
 // - randomized dirt terrain with different floor character map
 // - collision detection of walls, structures

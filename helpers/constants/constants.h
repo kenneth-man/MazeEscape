@@ -26,6 +26,8 @@ namespace helperConstants {
 	const string topRightBorder {"╗"};
 	const string botLeftBorder {"╚"};
 	const string botRightBorder {"╝"};
+	const int defaultGridXSize {120};
+	const int defaultGridYSize {20};
 	const int buildingsCount {3};
 	const vector<stringMatrix2d> buildingsSprites {
 		nonPlayerSprites::buildingNoWindows,
