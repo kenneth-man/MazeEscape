@@ -16,7 +16,7 @@ namespace helperFunctions {
 	void exitProgramWithError(const vector<string> &errorMessages);
 	vector<int> useMainArgs(int argc, char* argv[]);
 	bool isPositive(int number);
-	vector<NonPlayer> generateRandomXYPos(const Player &player, const vector<stringMatrix2d> &nonPlayerSprites, int xSize, int ySize);
+	vector<NonPlayer> generateRandomXYPos(const Player &player, const vector<stringMatrix2d> &nonPlayerSprites, int count, int xSize, int ySize);
 }
 
 #endif

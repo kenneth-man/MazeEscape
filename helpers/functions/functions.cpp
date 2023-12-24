@@ -61,6 +61,7 @@ bool helperFunctions::isPositive(int number) {
 vector<NonPlayer> helperFunctions::generateRandomXYPos(
 	const Player &player,
 	const vector<stringMatrix2d> &nonPlayerSprites,
+	int count,
 	int xSize,
 	int ySize
 ) {
@@ -68,7 +69,7 @@ vector<NonPlayer> helperFunctions::generateRandomXYPos(
 	vector<NonPlayer> nonPlayer {};
 	int nonPlayerSize {static_cast<int>(nonPlayerSprites.size())};
 
-	for (int i {0}; i < nonPlayerSize; ++i) {
+	for (int i {0}; i < count; ++i) {
 		int randomIndex {rand() % nonPlayerSize};
 		// 2-6 range; '+2' because never want the multiplier to be either '0' or '1'
 		int randomMultiplier {rand() % 4 + 2};

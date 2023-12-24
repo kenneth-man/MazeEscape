@@ -18,20 +18,15 @@ int main(int argc, char* argv[]) {
 	char input {helperConstants::defaultInput};
 	bool gameStart {false};
 	mutex m;
-
     Grid grid {MainArgs[0], MainArgs[1], helperConstants::defaultTerrain};
 	Player player {MainArgs[0] / 2, MainArgs[1] / 2, playerSprites::standDown};
 	Actions actions {};
 	TitleScreen titleScreen {};
-	const vector<stringMatrix2d> buildingsSprites {
-		nonPlayerSprites::buildingNoWindows,
-		nonPlayerSprites::buildingWithWindows,
-		nonPlayerSprites::buildingWithWindows2
-	};
 	vector<NonPlayer> buildings {
 		helperFunctions::generateRandomXYPos(
 			player,
-			buildingsSprites,
+			helperConstants::buildingsSprites,
+			helperConstants::buildingsCount,
 			grid.xSize,
 			grid.ySize
 		)
@@ -79,6 +74,7 @@ int main(int argc, char* argv[]) {
 
 // (TODO)
 // # - random generation (coords) of walls, structures
+//		- `nonPlayerSprites::buildingWithWindows2` not rendering?
 //		- fix buildings getting cut out at border (render the rest on next screen or make sure they render certain distance 'X' away from the border?)
 //		- check if need '</=' and '>/=' for line 217 in `Grid\Grid.cpp` (border number calc?)
 //		- try to get operator overloading to work with std::find... line 15 in `NonPlayer\NonPlayer.h`, line 88, 89, 94 in `helpers\functions\functions.cpp`

@@ -4,6 +4,7 @@
 #include <vector>
 #include "./interfaces.h"
 #include "./types.h"
+#include "./nonPlayerSprites.h"
 
 using namespace std;
 
@@ -25,6 +26,12 @@ namespace helperConstants {
 	const string topRightBorder {"╗"};
 	const string botLeftBorder {"╚"};
 	const string botRightBorder {"╝"};
+	const int buildingsCount {3};
+	const vector<stringMatrix2d> buildingsSprites {
+		nonPlayerSprites::buildingNoWindows,
+		nonPlayerSprites::buildingWithWindows,
+		nonPlayerSprites::buildingWithWindows2
+	};
 }
 
 #endif
