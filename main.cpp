@@ -33,11 +33,11 @@ int main(int argc, char* argv[]) {
 			grid.ySize
 		)
 	};
+	string oSpecialBuilding {helperFunctions::findSpecialBuilding(buildings)};
+
+	helperFunctions::changeConsoleBlink(false);
 	
 	while (input != helperConstants::inputQuit) {
-		for (NonPlayer b : buildings) {
-			cout << b.xPos << " " << b.yPos << '\n';
-		}
 		if (!gameStart) {
 			titleScreen.render();
 
@@ -59,15 +59,22 @@ int main(int argc, char* argv[]) {
 
 		grid.render(player, buildings);
 
-		cout << "xPos " << player.xPos << endl;
-		cout << "yPos " << player.yPos << endl;
-		cout << "xScreen " << grid.xScreen << endl;
-		cout << "yScreen " << grid.yScreen << endl;
+		grid.renderHUD(player, oSpecialBuilding);
+
+		// for (NonPlayer b : buildings) {
+		// 	cout << b.xPos << " " << b.yPos << '\n';
+		// }
+		// cout << "xPos " << player.xPos << '\n';
+		// cout << "yPos " << player.yPos << '\n';
+		// cout << "xScreen " << grid.xScreen << '\n';
+		// cout << "yScreen " << grid.yScreen << '\n';
 
 		input = getch();
 
 		actions.movePlayer(player, input);
 	}
+
+	helperFunctions::changeConsoleBlink(true);
 
     return 0;
 }
@@ -75,10 +82,11 @@ int main(int argc, char* argv[]) {
 
 
 // (TODO)
-// - hud with game info and good looking ascii
-// - randomized dirt terrain with different floor character map
 // - collision detection of walls, structures
-// - player starting position refactor
+// - handle inside buildings and entering
+// - render maze entrance and coords
+// - inside maze
+// - randomized dirt terrain with different floor character map
 // - detect if windows, mac or linux os, and use the appropriate `SetConsoleCursorPosition`-like function for windows so `clearScreen` is compatible
 // - enemies chasing if get too close (on a timer? updates per second without needing player input?)
 // - raw string puzzles
@@ -87,8 +95,6 @@ int main(int argc, char* argv[]) {
 // - player block
 
 // (BUGS/INVESTIGATIONS)
-// # ??? INVESTIGATION: why cout shows trailing digit from previous couts? e.g. xPos, yPos, xScreen, yScreen...
 // # !!! BUG: Actions::standPlayer causing a render bug if holding down the movement keys for a long time; extra borders are displaying; lines 43-44 in `main.cpp`
 // !!! BUG: sometimes the player gets reset to standing for less than a second if spamming the movement keys
-// ??? INVESTIGATION: why failing compile when putting `const vector<string> invalidArguments` into `helperConstants`?
 // ??? INVESTIGATION: why cannot use `std::optional`?

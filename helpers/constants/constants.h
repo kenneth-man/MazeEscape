@@ -32,7 +32,8 @@ namespace helperConstants {
 	const vector<stringMatrix2d> buildingsSprites {
 		nonPlayerSprites::buildingNoWindows,
 		nonPlayerSprites::buildingWithWindows,
-		nonPlayerSprites::buildingWithWindows2
+		nonPlayerSprites::buildingWithWindows2,
+		nonPlayerSprites::buildingSpecial
 	};
 }
 

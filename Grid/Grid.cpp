@@ -63,6 +63,12 @@ void Grid::render(const Player &player, const vector<NonPlayer> &buildings, bool
 	cout << output;
 }
 
+// Using ANSI escape codes to cout the 'HUD' so they don't interfere with the grid character positions in `Grid::render` loop
+void Grid::renderHUD(const Player &player, string oSpecialBuilding) {
+	cout << "\033[2;3H" << "x: " + to_string(player.xPos) + " " + "y: " + to_string(player.yPos) << '\n';
+	cout << "\033[3;3H" << oSpecialBuilding;
+}
+
 string Grid::renderBorder(int col, int row) {
 	const bool firstCol {col == 0};
 	const bool lastCol {col == Grid::ySize - 1};

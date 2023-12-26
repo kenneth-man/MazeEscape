@@ -19,6 +19,7 @@ struct Grid {
 	int yScreen {1};
 	void clearScreen();
 	void render(const Player &player, const vector<NonPlayer> &buildings, bool playerStand = false);
+	void renderHUD(const Player &player, string oSpecialBuilding);
 	string renderBorder(int col, int row);
 	IShouldBoundaryUpdate shouldBoundaryUpdate(int playerXPos, int playerYPos);
 	Directions checkShouldBoundaryUpdate(int playerPos, int screen, int size, const Directions &dir1, const Directions &dir2);

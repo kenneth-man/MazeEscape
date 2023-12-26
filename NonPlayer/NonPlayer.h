@@ -10,9 +10,12 @@ struct NonPlayer {
 	int xPos;
 	int yPos;
 	stringMatrix2d sprite;
-	// using 'this->' because we want to compare the instance's 'xPos' and 'yPos'
-	// 'NonPlayer::xPos' would be a static member which is shared across all 'NonPlayer's
-	// bool operator==(const NonPlayer &np) { return this->xPos == np.xPos || this->yPos == np.yPos; }
+	// using 'this->' because we want to compare the arg with this instance's 'sprite'
+	// 'NonPlayer::sprite' would be a static member which is shared across all 'NonPlayer's
+	bool operator==(const stringMatrix2d &np) const {
+		// Compare NonPlayer's sprite with the given matrix
+		return np == this->sprite;
+	}
 };
 
 #endif

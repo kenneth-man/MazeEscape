@@ -134,3 +134,15 @@ bool helperFunctions::calcIntersectScreen(int pos, int screenSize, int spriteSiz
 			absPos > screenSize ? screenSize * (sizeMultiplier + 1) : screenSize * sizeMultiplier
 		) - spriteSize;
 }
+
+void helperFunctions::changeConsoleBlink(bool display) {
+	display ? cout << "\033[?25h" : cout << "\033[?25l"; 
+}
+
+string helperFunctions::findSpecialBuilding(const vector<NonPlayer> &buildings) {
+	auto it = find(buildings.begin(), buildings.end(), nonPlayerSprites::buildingSpecial);
+	if (it != buildings.end()) {
+		return to_string(it->xPos) + " " + to_string(it->yPos) + " " + "???";
+	}
+	return "";
+}
