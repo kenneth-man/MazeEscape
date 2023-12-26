@@ -92,22 +92,10 @@ vector<NonPlayer> helperFunctions::generateRandomXYPos(
 			x = rand() % (xMax * 2 + 1) + xMin;
 			y = rand() % (yMax * 2 + 1) + yMin;
 
-			int xAbs {abs(x)};
-			int yAbs {abs(y)};
-			int xDiff {player.xPos - x};
-			int yDiff {player.yPos - y};
-
-			int xPlayerSpriteSize {static_cast<int>(player.sprite[0].size())};
-			int yPlayerSpriteSize {static_cast<int>(player.sprite.size())};
-			int xNonPlayerSpriteSize {static_cast<int>(nonPlayerSprites[randomIndex][0].size())};
-			int yNonPlayerSpriteSize {static_cast<int>(nonPlayerSprites[randomIndex].size())};
-			int xSizeMultiplier {xAbs / xSize};
-			int ySizeMultiplier {yAbs / ySize};
-
-			bool xIntersectPlayerSprite {abs(xDiff) >= 0 && abs(xDiff) <= xPlayerSpriteSize};
-			bool yIntersectPlayerSprite {abs(yDiff) >= 0 && abs(yDiff) <= yPlayerSpriteSize};
-			bool xIntersectScreen {xAbs % xSize <= xNonPlayerSpriteSize || xAbs >= (xAbs > xSize ? xSize * (xSizeMultiplier + 1) : xSize * xSizeMultiplier) - xNonPlayerSpriteSize};
-			bool yIntersectScreen {yAbs % ySize <= yNonPlayerSpriteSize || yAbs >= (yAbs > ySize ? ySize * (ySizeMultiplier + 1) : ySize * ySizeMultiplier) - yNonPlayerSpriteSize};
+			bool xIntersectPlayerSprite {helperFunctions::calcIntersectPlayer(x, player.xPos, static_cast<int>(player.sprite[0].size()))};
+			bool yIntersectPlayerSprite {helperFunctions::calcIntersectPlayer(y, player.yPos, static_cast<int>(player.sprite.size()))};
+			bool xIntersectScreen {helperFunctions::calcIntersectScreen(x, xSize, static_cast<int>(nonPlayerSprites[randomIndex][0].size()))};
+			bool yIntersectScreen {helperFunctions::calcIntersectScreen(y, ySize, static_cast<int>(nonPlayerSprites[randomIndex].size()))};
 
 			if (
 				x == player.xPos ||
@@ -129,4 +117,20 @@ vector<NonPlayer> helperFunctions::generateRandomXYPos(
 	}
 
 	return nonPlayer;
+}
+
+bool helperFunctions::calcIntersectPlayer(int pos, int playerPos, int playerSpriteSize) {
+	int posDiff {playerPos - pos};
+
+	return abs(posDiff) >= 0 && abs(posDiff) <= playerSpriteSize;
+}
+
+bool helperFunctions::calcIntersectScreen(int pos, int screenSize, int spriteSize) {
+	int absPos {abs(pos)};
+	int sizeMultiplier {absPos / screenSize};
+
+	return absPos % screenSize <= spriteSize ||
+		absPos >= (
+			absPos > screenSize ? screenSize * (sizeMultiplier + 1) : screenSize * sizeMultiplier
+		) - spriteSize;
 }

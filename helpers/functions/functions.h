@@ -17,6 +17,8 @@ namespace helperFunctions {
 	vector<int> useMainArgs(int argc, char* argv[]);
 	bool isPositive(int number);
 	vector<NonPlayer> generateRandomXYPos(const Player &player, const vector<stringMatrix2d> &nonPlayerSprites, int count, int xSize, int ySize);
+	bool calcIntersectPlayer(int pos, int playerPos, int playerSpriteSize);
+	bool calcIntersectScreen(int pos, int size, int spriteSize);
 }
 
 #endif

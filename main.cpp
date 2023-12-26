@@ -75,8 +75,6 @@ int main(int argc, char* argv[]) {
 
 
 // (TODO)
-// # - random generation (coords) of walls, structures
-//		- refactor `generateRandomXYPos` especially lines 109, 110
 // - hud with game info and good looking ascii
 // - randomized dirt terrain with different floor character map
 // - collision detection of walls, structures
