@@ -7,7 +7,6 @@
 #include "../helpers/constants/constants.h"
 #include "../helpers/constants/enums.h"
 #include "../helpers/constants/interfaces.h"
-#include "../helpers/functions/functions.h"
 
 using namespace std;
 
@@ -18,7 +17,7 @@ struct Grid {
 	int xScreen {1};
 	int yScreen {1};
 	void clearScreen();
-	void render(const Player &player, const vector<NonPlayer> &buildings, bool playerStand = false);
+	void render(const Player &player, const vector<NonPlayer> &buildings, bool &boundaryUpdated, bool playerStand = false);
 	void renderHUD(const Player &player, string oSpecialBuilding);
 	string renderBorder(int col, int row);
 	IShouldBoundaryUpdate shouldBoundaryUpdate(int playerXPos, int playerYPos);

@@ -12,7 +12,7 @@ void Grid::clearScreen() {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPosition);
 }
 
-void Grid::render(const Player &player, const vector<NonPlayer> &buildings, bool playerStand) {
+void Grid::render(const Player &player, const vector<NonPlayer> &buildings, bool &boundaryUpdated, bool playerStand) {
 	// 'this' is implicitly used here... e.g. this->clearScreen(); it is being called on an instance of the Grid class (this)
 	// can only call members of a class without an instance if it's in that class '.cpp' file
 	// to call outside of the class '.cpp' file without an instance, make it a static method
@@ -25,6 +25,7 @@ void Grid::render(const Player &player, const vector<NonPlayer> &buildings, bool
 
 		if (boundary.shouldUpdate) {
 			calcBoundaryUpdate(boundary.updateDirection);
+			boundaryUpdated = true;
 		}
 	}
 
@@ -66,7 +67,7 @@ void Grid::render(const Player &player, const vector<NonPlayer> &buildings, bool
 // Using ANSI escape codes to cout the 'HUD' so they don't interfere with the grid character positions in `Grid::render` loop
 void Grid::renderHUD(const Player &player, string oSpecialBuilding) {
 	cout << "\033[2;3H" << "x: " + to_string(player.xPos) + " " + "y: " + to_string(player.yPos) << '\n';
-	cout << "\033[3;3H" << oSpecialBuilding;
+	if (oSpecialBuilding != helperConstants::falsyString) cout << "\033[3;3H" << oSpecialBuilding;
 }
 
 string Grid::renderBorder(int col, int row) {
@@ -136,7 +137,7 @@ Directions Grid::checkShouldBoundaryUpdate(
 	const Directions &dir1,
 	const Directions &dir2
 ) {
-	bool isScreenPositive {helperFunctions::isPositive(screen)};
+	bool isScreenPositive {screen > 0};
 
 	if (isScreenPositive) {
 		if (playerPos < (screen == 1 ? 0 : (screen - 1) * size)) return dir1;
@@ -200,7 +201,7 @@ int Grid::calcSpriteDimension(
 	int screen,
 	int size
 ) {
-	bool isScreenPositive {helperFunctions::isPositive(screen)};
+	bool isScreenPositive {screen > 0};
 
 	if (isScreenPositive) {
 		return index - (pos - (screen == 1 ? 0 : (screen - 1) * size));

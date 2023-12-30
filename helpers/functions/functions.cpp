@@ -60,10 +60,6 @@ vector<int> helperFunctions::useMainArgs(
 	return gridDimensions;
 }
 
-bool helperFunctions::isPositive(int number) {
-	return number > 0;
-}
-
 vector<NonPlayer> helperFunctions::generateRandomXYPos(
 	const Player &player,
 	const vector<stringMatrix2d> &nonPlayerSprites,
@@ -144,5 +140,33 @@ string helperFunctions::findSpecialBuilding(const vector<NonPlayer> &buildings) 
 	if (it != buildings.end()) {
 		return to_string(it->xPos) + " " + to_string(it->yPos) + " " + "???";
 	}
-	return "";
+
+	return helperConstants::falsyString;
+}
+
+vector<coord> helperFunctions::calcBuildingsCoords(const vector<NonPlayer> &buildings) {
+	vector<coord> positions;
+	transform(buildings.cbegin(), buildings.cend(), back_inserter(positions),
+		[](const NonPlayer& building) { return make_pair(building.xPos, building.yPos); });
+
+	return positions;
+}
+
+bool helperFunctions::someRendered(const vector<coord> &coords, const Grid &grid) {
+	int maxXCoord {grid.xScreen * grid.xSize};
+	int maxYCoord {grid.yScreen * grid.ySize};
+
+	for (const coord &c : coords) {
+		if (!(abs(grid.xScreen) == 1 ? abs(c.first) <= grid.xSize : abs(maxXCoord - c.first) <= grid.xSize)) continue;
+		if (abs(grid.yScreen) == 1 ? abs(c.second) <= grid.ySize : abs(maxYCoord - c.second) <= grid.ySize) return true;
+	}
+
+	return false;
+}
+
+void helperFunctions::checkSomeRendered(const vector<coord> &coords, const Grid &grid, bool &boundaryUpdated, bool &someRendered) {
+	if (boundaryUpdated) {
+		someRendered = helperFunctions::someRendered(coords, grid);
+		boundaryUpdated = false;
+	}
 }

@@ -55,6 +55,7 @@
 		"condition_variable": "cpp",
 		"mutex": "cpp",
 		"map": "cpp",
-		"iomanip": "cpp"
+		"iomanip": "cpp",
+		"cstring": "cpp"
 	}
 }

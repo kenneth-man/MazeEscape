@@ -9,6 +9,7 @@
 #include "./helpers/constants/constants.h"
 #include "./helpers/constants/playerSprites.h"
 #include "./helpers/constants/nonPlayerSprites.h"
+#include "./helpers/constants/types.h"
 #include "./helpers/functions/functions.h"
 
 using namespace std;
@@ -19,6 +20,8 @@ int main(int argc, char* argv[]) {
 	const int ySize {mainArgs.size() == 0 ? helperConstants::defaultGridYSize : mainArgs[1]};
 	char input {helperConstants::defaultInput};
 	bool gameStart {false};
+	bool boundaryUpdated {false};
+	bool someRendered {false};
 	mutex m;
     Grid grid {xSize, ySize, helperConstants::defaultTerrain};
 	Player player {xSize / 2, ySize / 2, playerSprites::standDown};
@@ -33,6 +36,7 @@ int main(int argc, char* argv[]) {
 			grid.ySize
 		)
 	};
+	vector<coord> buildingsCoords {helperFunctions::calcBuildingsCoords(buildings)};
 	string oSpecialBuilding {helperFunctions::findSpecialBuilding(buildings)};
 
 	helperFunctions::changeConsoleBlink(false);
@@ -57,17 +61,11 @@ int main(int argc, char* argv[]) {
 		// thread t1(&Actions::standPlayer, &actions, ref(player), ref(grid), ref(m), input);
 		// t1.detach();
 
-		grid.render(player, buildings);
+		grid.render(player, buildings, boundaryUpdated);
 
 		grid.renderHUD(player, oSpecialBuilding);
 
-		// for (NonPlayer b : buildings) {
-		// 	cout << b.xPos << " " << b.yPos << '\n';
-		// }
-		// cout << "xPos " << player.xPos << '\n';
-		// cout << "yPos " << player.yPos << '\n';
-		// cout << "xScreen " << grid.xScreen << '\n';
-		// cout << "yScreen " << grid.yScreen << '\n';
+		helperFunctions::checkSomeRendered(buildingsCoords, grid, boundaryUpdated, someRendered);
 
 		input = getch();
 
