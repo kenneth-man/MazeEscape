@@ -152,19 +152,25 @@ vector<coord> helperFunctions::calcBuildingsCoords(const vector<NonPlayer> &buil
 	return positions;
 }
 
-bool helperFunctions::someRendered(const vector<coord> &coords, const Grid &grid) {
+vector<coord> helperFunctions::someRendered(const vector<coord> &coords, const Grid &grid) {
+	bool isPosXScreen {grid.xScreen > 0};
+	bool isPosYScreen {grid.yScreen > 0};
 	int maxXCoord {grid.xScreen * grid.xSize};
+	int minXCoord {abs(grid.xScreen) == 1 ? 0 : isPosXScreen ? maxXCoord - grid.xSize : maxXCoord + grid.xSize};
 	int maxYCoord {grid.yScreen * grid.ySize};
+	int minYCoord {abs(grid.yScreen) == 1 ? 0 : isPosYScreen ? maxYCoord - grid.ySize : maxYCoord + grid.ySize};
+	vector<coord> coordsRendered {};
 
 	for (const coord &c : coords) {
-		if (!(abs(grid.xScreen) == 1 ? abs(c.first) <= grid.xSize : abs(maxXCoord - c.first) <= grid.xSize)) continue;
-		if (abs(grid.yScreen) == 1 ? abs(c.second) <= grid.ySize : abs(maxYCoord - c.second) <= grid.ySize) return true;
+		if (!(isPosXScreen ? c.first >= minXCoord && c.first <= maxXCoord : c.first <= minXCoord && c.first >= maxXCoord)) continue;
+
+		if (isPosYScreen ? c.second >= minYCoord && c.second <= maxYCoord : c.second <= minYCoord && c.second >= maxYCoord) coordsRendered.push_back(c);
 	}
 
-	return false;
+	return coordsRendered;
 }
 
-void helperFunctions::checkSomeRendered(const vector<coord> &coords, const Grid &grid, bool &boundaryUpdated, bool &someRendered) {
+void helperFunctions::checkSomeRendered(const vector<coord> &coords, const Grid &grid, vector<coord> &someRendered, bool &boundaryUpdated) {
 	if (boundaryUpdated) {
 		someRendered = helperFunctions::someRendered(coords, grid);
 		boundaryUpdated = false;

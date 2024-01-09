@@ -24,8 +24,8 @@ namespace helperFunctions {
 	void changeConsoleBlink(bool display);
 	string findSpecialBuilding(const vector<NonPlayer> &buildings);
 	vector<coord> calcBuildingsCoords(const vector<NonPlayer> &buildings);
-	bool someRendered(const vector<coord> &coords, const Grid &grid);
-	void checkSomeRendered(const vector<coord> &coords, const Grid &grid, bool &boundaryUpdated, bool &someRendered);
+	vector<coord> someRendered(const vector<coord> &coords, const Grid &grid);
+	void checkSomeRendered(const vector<coord> &coords, const Grid &grid, vector<coord> &someRendered, bool &boundaryUpdated);
 }
 
 #endif

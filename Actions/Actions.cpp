@@ -3,7 +3,7 @@
 using namespace std;
 
 void Actions::movePlayer(Player &player, char input) {
-	switch(input) {
+	switch(tolower(input)) {
 		case helperConstants::inputUp:
 			player.yPos -= 1;
 			player.sprite = Actions::calcNextPlayerSprite(

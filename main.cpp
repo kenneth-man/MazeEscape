@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
 	char input {helperConstants::defaultInput};
 	bool gameStart {false};
 	bool boundaryUpdated {false};
-	bool someRendered {false};
+	vector<coord> someRendered {};
 	mutex m;
     Grid grid {xSize, ySize, helperConstants::defaultTerrain};
 	Player player {xSize / 2, ySize / 2, playerSprites::standDown};
@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
 
 	helperFunctions::changeConsoleBlink(false);
 	
-	while (input != helperConstants::inputQuit) {
+	while (tolower(input) != helperConstants::inputQuit) {
 		if (!gameStart) {
 			titleScreen.render();
 
@@ -65,7 +65,7 @@ int main(int argc, char* argv[]) {
 
 		grid.renderHUD(player, oSpecialBuilding);
 
-		helperFunctions::checkSomeRendered(buildingsCoords, grid, boundaryUpdated, someRendered);
+		helperFunctions::checkSomeRendered(buildingsCoords, grid, someRendered, boundaryUpdated);
 
 		input = getch();
 
@@ -80,7 +80,8 @@ int main(int argc, char* argv[]) {
 
 
 // (TODO)
-// - collision detection of walls, structures
+// # - refactor someRendered
+// # - collision detection of walls, structures
 // - handle inside buildings and entering
 // - render maze entrance and coords
 // - inside maze
