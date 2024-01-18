@@ -2,6 +2,7 @@
 #include <mutex>
 #include <iostream>
 #include <conio.h>
+#include <map>
 #include "./Grid/Grid.h"
 #include "./Actions/Actions.h"
 #include "./TitleScreen/TitleScreen.h"
@@ -14,14 +15,18 @@
 
 using namespace std;
 
-int main(int argc, char* argv[]) {
+int main(
+	int argc,
+	char* argv[]
+) {
 	const vector<int> mainArgs {helperFunctions::useMainArgs(argc, argv)};
 	const int xSize {mainArgs.size() == 0 ? helperConstants::defaultGridXSize : mainArgs[0]};
 	const int ySize {mainArgs.size() == 0 ? helperConstants::defaultGridYSize : mainArgs[1]};
 	char input {helperConstants::defaultInput};
 	bool gameStart {false};
 	bool boundaryUpdated {false};
-	vector<coord> someRendered {};
+	bool playerWouldCollide {false};
+	map<NonPlayer, coord> someRendered {};
 	mutex m;
     Grid grid {xSize, ySize, helperConstants::defaultTerrain};
 	Player player {xSize / 2, ySize / 2, playerSprites::standDown};
@@ -36,11 +41,11 @@ int main(int argc, char* argv[]) {
 			grid.ySize
 		)
 	};
-	vector<coord> buildingsCoords {helperFunctions::calcBuildingsCoords(buildings)};
+	map<NonPlayer, coord> buildingsMap {helperFunctions::calcNonPlayerMap(buildings)};
 	string oSpecialBuilding {helperFunctions::findSpecialBuilding(buildings)};
 
 	helperFunctions::changeConsoleBlink(false);
-	
+
 	while (tolower(input) != helperConstants::inputQuit) {
 		if (!gameStart) {
 			titleScreen.render();
@@ -65,7 +70,13 @@ int main(int argc, char* argv[]) {
 
 		grid.renderHUD(player, oSpecialBuilding);
 
-		helperFunctions::checkSomeRendered(buildingsCoords, grid, someRendered, boundaryUpdated);
+		if (boundaryUpdated) {
+			helperFunctions::checkSomeRendered(buildingsMap, someRendered, grid, boundaryUpdated);
+		}
+
+		if (static_cast<int>(someRendered.size()) > 0) {
+			player.checkWouldCollide(someRendered, playerWouldCollide);
+		}
 
 		input = getch();
 

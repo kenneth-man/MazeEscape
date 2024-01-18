@@ -12,7 +12,12 @@ void Grid::clearScreen() {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPosition);
 }
 
-void Grid::render(const Player &player, const vector<NonPlayer> &buildings, bool &boundaryUpdated, bool playerStand) {
+void Grid::render(
+	const Player &player,
+	const vector<NonPlayer> &buildings,
+	bool &boundaryUpdated,
+	bool playerStand
+) {
 	// 'this' is implicitly used here... e.g. this->clearScreen(); it is being called on an instance of the Grid class (this)
 	// can only call members of a class without an instance if it's in that class '.cpp' file
 	// to call outside of the class '.cpp' file without an instance, make it a static method
@@ -65,12 +70,18 @@ void Grid::render(const Player &player, const vector<NonPlayer> &buildings, bool
 }
 
 // Using ANSI escape codes to cout the 'HUD' so they don't interfere with the grid character positions in `Grid::render` loop
-void Grid::renderHUD(const Player &player, string oSpecialBuilding) {
+void Grid::renderHUD(
+	const Player &player,
+	string oSpecialBuilding
+) {
 	cout << "\033[2;3H" << "x: " + to_string(player.xPos) + " " + "y: " + to_string(player.yPos) << '\n';
 	if (oSpecialBuilding != helperConstants::falsyString) cout << "\033[3;3H" << oSpecialBuilding;
 }
 
-string Grid::renderBorder(int col, int row) {
+string Grid::renderBorder(
+	int col,
+	int row
+) {
 	const bool firstCol {col == 0};
 	const bool lastCol {col == Grid::ySize - 1};
 	const bool firstRow {row == 0};
@@ -98,7 +109,10 @@ string Grid::renderBorder(int col, int row) {
 	return helperConstants::falsyString;
 }
 
-IShouldBoundaryUpdate Grid::shouldBoundaryUpdate(int playerXPos, int playerYPos) {
+IShouldBoundaryUpdate Grid::shouldBoundaryUpdate(
+	int playerXPos,
+	int playerYPos
+) {
 	const Directions xDirection {
 		checkShouldBoundaryUpdate(
 			playerXPos,
@@ -152,7 +166,9 @@ Directions Grid::checkShouldBoundaryUpdate(
 	return Directions::NULL_DIRECTION;
 }
 
-void Grid::calcBoundaryUpdate(const Directions &direction) {
+void Grid::calcBoundaryUpdate(
+	const Directions &direction
+) {
 	if (direction == Directions::LEFT) {
 		ignoreScreenZero(Grid::xScreen, -1);
 		return;
@@ -168,7 +184,10 @@ void Grid::calcBoundaryUpdate(const Directions &direction) {
 	ignoreScreenZero(Grid::yScreen, 1);
 }
 
-void Grid::ignoreScreenZero(int &screen, int update) {
+void Grid::ignoreScreenZero(
+	int &screen,
+	int update
+) {
 	const int newScreen {screen + (update)};
 	screen = newScreen == 0 ? update : newScreen;
 }

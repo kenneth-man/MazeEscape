@@ -2,11 +2,15 @@
 
 using namespace std;
 
-void helperFunctions::displayString(string input) {
+void helperFunctions::displayString(
+	string input
+) {
 	cout << input << "\n";
 }
 
-void helperFunctions::exitProgramWithError(const vector<string> &errorMessages) {
+void helperFunctions::exitProgramWithError(
+	const vector<string> &errorMessages
+) {
 	if (errorMessages.size() == 0) return;
 
 	displayString(rawStrings::error);
@@ -115,13 +119,21 @@ vector<NonPlayer> helperFunctions::generateRandomXYPos(
 	return nonPlayer;
 }
 
-bool helperFunctions::calcIntersectPlayer(int pos, int playerPos, int playerSpriteSize) {
+bool helperFunctions::calcIntersectPlayer(
+	int pos,
+	int playerPos,
+	int playerSpriteSize
+) {
 	int posDiff {playerPos - pos};
 
 	return abs(posDiff) >= 0 && abs(posDiff) <= playerSpriteSize;
 }
 
-bool helperFunctions::calcIntersectScreen(int pos, int screenSize, int spriteSize) {
+bool helperFunctions::calcIntersectScreen(
+	int pos,
+	int screenSize,
+	int spriteSize
+) {
 	int absPos {abs(pos)};
 	int sizeMultiplier {absPos / screenSize};
 
@@ -131,11 +143,15 @@ bool helperFunctions::calcIntersectScreen(int pos, int screenSize, int spriteSiz
 		) - spriteSize;
 }
 
-void helperFunctions::changeConsoleBlink(bool display) {
+void helperFunctions::changeConsoleBlink(
+	bool display
+) {
 	display ? cout << "\033[?25h" : cout << "\033[?25l"; 
 }
 
-string helperFunctions::findSpecialBuilding(const vector<NonPlayer> &buildings) {
+string helperFunctions::findSpecialBuilding(
+	const vector<NonPlayer> &buildings
+) {
 	auto it = find(buildings.begin(), buildings.end(), nonPlayerSprites::buildingSpecial);
 	if (it != buildings.end()) {
 		return to_string(it->xPos) + " " + to_string(it->yPos) + " " + "???";
@@ -144,35 +160,73 @@ string helperFunctions::findSpecialBuilding(const vector<NonPlayer> &buildings) 
 	return helperConstants::falsyString;
 }
 
-vector<coord> helperFunctions::calcBuildingsCoords(const vector<NonPlayer> &buildings) {
+vector<coord> helperFunctions::calcNonPlayerCoords(
+	const vector<NonPlayer> &np
+) {
 	vector<coord> positions;
-	transform(buildings.cbegin(), buildings.cend(), back_inserter(positions),
-		[](const NonPlayer& building) { return make_pair(building.xPos, building.yPos); });
+
+	transform(np.cbegin(), np.cend(), back_inserter(positions),
+		[](const NonPlayer &n) { return make_pair(n.xPos, n.yPos); });
 
 	return positions;
 }
 
-vector<coord> helperFunctions::someRendered(const vector<coord> &coords, const Grid &grid) {
+map<NonPlayer, coord> helperFunctions::calcNonPlayerMap(
+	const vector<NonPlayer> &np
+) {
+	vector<coord> coords {helperFunctions::calcNonPlayerCoords(np)};
+
+	map<NonPlayer, coord> map;
+
+	if (np.size() == coords.size()) {
+		for (size_t i = 0; i < np.size(); ++i) {
+			map.insert(make_pair(np[i], coords[i]));
+        }
+	}
+
+	return map;
+}
+
+map<NonPlayer, coord> helperFunctions::someRendered(
+	const map<NonPlayer, coord> &npMap,
+	const Grid &grid
+) {
 	bool isPosXScreen {grid.xScreen > 0};
 	bool isPosYScreen {grid.yScreen > 0};
 	int maxXCoord {grid.xScreen * grid.xSize};
 	int minXCoord {abs(grid.xScreen) == 1 ? 0 : isPosXScreen ? maxXCoord - grid.xSize : maxXCoord + grid.xSize};
 	int maxYCoord {grid.yScreen * grid.ySize};
 	int minYCoord {abs(grid.yScreen) == 1 ? 0 : isPosYScreen ? maxYCoord - grid.ySize : maxYCoord + grid.ySize};
-	vector<coord> coordsRendered {};
+	map<NonPlayer, coord> coordsRendered {};
 
-	for (const coord &c : coords) {
-		if (!(isPosXScreen ? c.first >= minXCoord && c.first <= maxXCoord : c.first <= minXCoord && c.first >= maxXCoord)) continue;
+	for (const pair<NonPlayer, coord> &c : npMap) {
+		const int x { c.second.first };
 
-		if (isPosYScreen ? c.second >= minYCoord && c.second <= maxYCoord : c.second <= minYCoord && c.second >= maxYCoord) coordsRendered.push_back(c);
+		if (!(isPosXScreen ? x >= minXCoord && x <= maxXCoord : x <= minXCoord && x >= maxXCoord)) continue;
+
+		const int y { c.second.second };
+
+		if (isPosYScreen ? y >= minYCoord && y <= maxYCoord : y <= minYCoord && y >= maxYCoord) coordsRendered.insert(c);
 	}
 
 	return coordsRendered;
 }
 
-void helperFunctions::checkSomeRendered(const vector<coord> &coords, const Grid &grid, vector<coord> &someRendered, bool &boundaryUpdated) {
-	if (boundaryUpdated) {
-		someRendered = helperFunctions::someRendered(coords, grid);
-		boundaryUpdated = false;
-	}
+void helperFunctions::checkSomeRendered(
+	const map<NonPlayer, coord> &npMap,
+	map<NonPlayer, coord> &someRendered,
+	const Grid &grid,
+	bool &boundaryUpdated
+) {
+	someRendered = helperFunctions::someRendered(npMap, grid);
+	boundaryUpdated = false;
+}
+
+coord helperFunctions::calcSpriteMaxCoord(
+	const pair<stringMatrix2d, coord> &spritePair
+) {
+	const int dimX {spritePair.first[0].size()};
+	const int dimY {spritePair.first.size()};
+
+	return make_pair(spritePair.second.first + (dimX - 1), spritePair.second.second + (dimY - 1));
 }

@@ -2,6 +2,7 @@
 #define _FUNCTIONS_
 #include <string>
 #include <vector>
+#include <map>
 #include <algorithm>
 #include <iostream>
 #include <stdlib.h>
@@ -23,9 +24,11 @@ namespace helperFunctions {
 	bool calcIntersectScreen(int pos, int size, int spriteSize);
 	void changeConsoleBlink(bool display);
 	string findSpecialBuilding(const vector<NonPlayer> &buildings);
-	vector<coord> calcBuildingsCoords(const vector<NonPlayer> &buildings);
-	vector<coord> someRendered(const vector<coord> &coords, const Grid &grid);
-	void checkSomeRendered(const vector<coord> &coords, const Grid &grid, vector<coord> &someRendered, bool &boundaryUpdated);
+	vector<coord> calcNonPlayerCoords(const vector<NonPlayer> &np);
+	map<NonPlayer, coord> calcNonPlayerMap(const vector<NonPlayer> &np);
+	map<NonPlayer, coord> someRendered(const map<NonPlayer, coord> &npMap, const Grid &grid);
+	void checkSomeRendered(const map<NonPlayer, coord> &npMap, map<NonPlayer, coord> &someRendered, const Grid &grid, bool &boundaryUpdated);
+	coord calcSpriteMaxCoord(const pair<stringMatrix2d, coord> &spritePair);
 }
 
 #endif
