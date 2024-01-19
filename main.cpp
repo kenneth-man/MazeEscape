@@ -91,7 +91,9 @@ int main(
 
 
 // (TODO)
-// # - refactor someRendered
+// # - refactor someRendered + test most recent commit changes
+// # - convert repo to cmake
+// # - add unit tests catch2
 // # - collision detection of walls, structures
 // - handle inside buildings and entering
 // - render maze entrance and coords
