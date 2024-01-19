@@ -2,7 +2,10 @@
 
 using namespace std;
 
-void Actions::movePlayer(Player &player, char input) {
+void Actions::movePlayer(
+	Player &player,
+	char input
+) {
 	switch(tolower(input)) {
 		case helperConstants::inputUp:
 			player.yPos -= 1;
@@ -37,7 +40,12 @@ void Actions::movePlayer(Player &player, char input) {
 	}
 }
 
-void Actions::standPlayer(Player &player, Grid &grid, mutex &mut, char input) {
+void Actions::standPlayer(
+	Player &player,
+	Grid &grid,
+	mutex &mut,
+	char input
+) {
 	// `mut.try_lock()` attempts to lock the mutex, if another thread has locked the mutex already, do nothing
 	// if(mut.try_lock()) {
 	// 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));

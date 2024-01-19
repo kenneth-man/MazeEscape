@@ -8,6 +8,8 @@
 #include "../helpers/constants/enums.h"
 #include "../helpers/constants/interfaces.h"
 
+class Player;
+
 using namespace std;
 
 struct Grid {
