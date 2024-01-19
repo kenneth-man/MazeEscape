@@ -13,6 +13,10 @@
 #include "../../Player/Player.h"
 #include "../../Grid/Grid.h"
 
+class Grid;
+class Player;
+class NonPlayer;
+
 using namespace std;
 
 namespace helperFunctions {

@@ -9,7 +9,7 @@ void Player::checkWouldCollide(
 	)};
 	const coord playerMinCoord {make_pair(Player::xPos, Player::yPos)};
 
-	for(const pair<NonPlayer, coord> &p : npMap) {
+	for(const auto &p : npMap) {
 		const coord maxCoord {helperFunctions::calcSpriteMaxCoord(
 			make_pair(p.first.sprite, p.second)
 		)};

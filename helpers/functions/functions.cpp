@@ -199,7 +199,7 @@ map<NonPlayer, coord> helperFunctions::someRendered(
 	int minYCoord {abs(grid.yScreen) == 1 ? 0 : isPosYScreen ? maxYCoord - grid.ySize : maxYCoord + grid.ySize};
 	map<NonPlayer, coord> coordsRendered {};
 
-	for (const pair<NonPlayer, coord> &c : npMap) {
+	for (const auto &c : npMap) {
 		const int x { c.second.first };
 
 		if (!(isPosXScreen ? x >= minXCoord && x <= maxXCoord : x <= minXCoord && x >= maxXCoord)) continue;
@@ -225,8 +225,8 @@ void helperFunctions::checkSomeRendered(
 coord helperFunctions::calcSpriteMaxCoord(
 	const pair<stringMatrix2d, coord> &spritePair
 ) {
-	const int dimX {spritePair.first[0].size()};
-	const int dimY {spritePair.first.size()};
+	const int dimX {static_cast<int>(spritePair.first[0].size())};
+	const int dimY {static_cast<int>(spritePair.first.size())};
 
 	return make_pair(spritePair.second.first + (dimX - 1), spritePair.second.second + (dimY - 1));
 }
