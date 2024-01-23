@@ -1,0 +1,5 @@
+add_library(${HELPER_CONSTANTS} INTERFACE)
+
+target_include_directories(${HELPER_CONSTANTS} INTERFACE
+	${CMAKE_CURRENT_SOURCE_DIR}
+)

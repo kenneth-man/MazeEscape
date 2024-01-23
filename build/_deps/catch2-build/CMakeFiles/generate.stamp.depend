@@ -1,0 +1,7 @@
+# CMake generation dependency list for this directory.
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/_deps/catch2-src/CMake/CatchConfigOptions.cmake
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/_deps/catch2-src/CMakeLists.txt
+C:/mingw64/share/cmake-3.26/Modules/CMakeDependentOption.cmake
+C:/mingw64/share/cmake-3.26/Modules/CMakePackageConfigHelpers.cmake
+C:/mingw64/share/cmake-3.26/Modules/GNUInstallDirs.cmake
+C:/mingw64/share/cmake-3.26/Modules/WriteBasicConfigVersionFile.cmake

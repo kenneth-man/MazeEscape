@@ -1,0 +1,15 @@
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/_deps/catch2-build/CMakeFiles/ALL_BUILD.dir
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/_deps/catch2-build/src/CMakeFiles/Catch2.dir
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/_deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/src/Actions/CMakeFiles/actions.dir
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/src/Grid/CMakeFiles/grid.dir
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/src/helpers/functions/CMakeFiles/helperFunctions.dir
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/src/Player/CMakeFiles/player.dir
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/src/TitleScreen/CMakeFiles/titleScreen.dir
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/tests/Actions/CMakeFiles/actionsTests.dir
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/tests/Grid/CMakeFiles/gridTests.dir
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/tests/helpers/functions/CMakeFiles/helperFunctionsTests.dir
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/tests/Player/CMakeFiles/playerTests.dir
+C:/Users/kwkm/Desktop/Personal Projects/C++/MazeEscape/build/app/CMakeFiles/mazeEscape.dir

@@ -1,1 +1,1 @@
-# Command line game to practice C++
+# Command line game to practice C++, CMake and Catch2
