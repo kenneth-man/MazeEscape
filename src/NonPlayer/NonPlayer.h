@@ -13,7 +13,6 @@ struct NonPlayer {
 	// using 'this->' because we want to compare the arg with this instance's 'sprite'
 	// 'NonPlayer::sprite' would be a static member which is shared across all 'NonPlayer's
 	bool operator==(const stringMatrix2d &rhs) const {
-		// Compare NonPlayer's sprite with the given matrix
 		return rhs == this->sprite;
 	}
 	// for using `NonPlayer` with `std::map`

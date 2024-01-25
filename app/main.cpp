@@ -32,7 +32,6 @@ int main(
 	Player player {xSize / 2, ySize / 2, playerSprites::standDown};
 	Actions actions {};
 	TitleScreen titleScreen {};
-	cout << "Ran" << '\n';
 	vector<NonPlayer> buildings {
 		helperFunctions::generateRandomXYPos(
 			player,

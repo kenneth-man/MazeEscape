@@ -179,7 +179,7 @@ map<NonPlayer, coord> helperFunctions::calcNonPlayerMap(
 	map<NonPlayer, coord> map;
 
 	if (np.size() == coords.size()) {
-		for (size_t i = 0; i < np.size(); ++i) {
+		for (size_t i {0}; i < np.size(); ++i) {
 			map.insert(make_pair(np[i], coords[i]));
         }
 	}
