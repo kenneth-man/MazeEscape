@@ -32,6 +32,7 @@ int main(
 	Player player {xSize / 2, ySize / 2, playerSprites::standDown};
 	Actions actions {};
 	TitleScreen titleScreen {};
+	cout << "Ran" << '\n';
 	vector<NonPlayer> buildings {
 		helperFunctions::generateRandomXYPos(
 			player,
@@ -42,48 +43,48 @@ int main(
 		)
 	};
 	map<NonPlayer, coord> buildingsMap {helperFunctions::calcNonPlayerMap(buildings)};
-	string oSpecialBuilding {helperFunctions::findSpecialBuilding(buildings)};
+	// string oSpecialBuilding {helperFunctions::findSpecialBuilding(buildings)};
 
-	helperFunctions::changeConsoleBlink(false);
+	// helperFunctions::changeConsoleBlink(false);
 
-	while (tolower(input) != helperConstants::inputQuit) {
-		if (!gameStart) {
-			titleScreen.render();
+	// while (tolower(input) != helperConstants::inputQuit) {
+	// 	if (!gameStart) {
+	// 		titleScreen.render();
 
-			input = getch();
+	// 		input = getch();
 
-			if (input == helperConstants::inputSpace) {
-				gameStart = true;
-			}
+	// 		if (input == helperConstants::inputSpace) {
+	// 			gameStart = true;
+	// 		}
 
-			// clear entire terminal to make sure instructions aren't shown during gameplay
-			// because instructions have a larger height than the grid
-			system("CLS");
+	// 		// clear entire terminal to make sure instructions aren't shown during gameplay
+	// 		// because instructions have a larger height than the grid
+	// 		system("CLS");
 
-			continue;
-		}
+	// 		continue;
+	// 	}
 
-		// thread t1(&Actions::standPlayer, &actions, ref(player), ref(grid), ref(m), input);
-		// t1.detach();
+	// 	// thread t1(&Actions::standPlayer, &actions, ref(player), ref(grid), ref(m), input);
+	// 	// t1.detach();
 
-		grid.render(player, buildings, boundaryUpdated);
+	// 	grid.render(player, buildings, boundaryUpdated);
 
-		grid.renderHUD(player, oSpecialBuilding);
+	// 	grid.renderHUD(player, oSpecialBuilding);
 
-		if (boundaryUpdated) {
-			helperFunctions::checkSomeRendered(buildingsMap, someRendered, grid, boundaryUpdated);
-		}
+	// 	if (boundaryUpdated) {
+	// 		helperFunctions::checkSomeRendered(buildingsMap, someRendered, grid, boundaryUpdated);
+	// 	}
 
-		if (static_cast<int>(someRendered.size()) > 0) {
-			player.checkWouldCollide(someRendered, playerWouldCollide);
-		}
+	// 	if (static_cast<int>(someRendered.size()) > 0) {
+	// 		player.checkWouldCollide(someRendered, playerWouldCollide);
+	// 	}
 
-		input = getch();
+	// 	input = getch();
 
-		actions.movePlayer(player, input);
-	}
+	// 	actions.movePlayer(player, input);
+	// }
 
-	helperFunctions::changeConsoleBlink(true);
+	// helperFunctions::changeConsoleBlink(true);
 
     return 0;
 }
