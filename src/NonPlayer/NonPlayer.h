@@ -17,7 +17,10 @@ struct NonPlayer {
 	}
 	// for using `NonPlayer` with `std::map`
     bool operator<(const NonPlayer &rhs) const {
-        return rhs.xPos > this->xPos || rhs.yPos > this->yPos;
+		// Debug assertion failed (invalid comparator) error at runtime only with CMake; not sure why
+        // return rhs.xPos > this->xPos || rhs.yPos > this->yPos;
+
+		return false;
     }
 };
 

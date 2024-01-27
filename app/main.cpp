@@ -19,6 +19,8 @@ int main(
 	int argc,
 	char* argv[]
 ) {
+	//cout << "============== C++ version " << __cplusplus << '\n';
+
 	const vector<int> mainArgs {helperFunctions::useMainArgs(argc, argv)};
 	const int xSize {mainArgs.size() == 0 ? helperConstants::defaultGridXSize : mainArgs[0]};
 	const int ySize {mainArgs.size() == 0 ? helperConstants::defaultGridYSize : mainArgs[1]};
@@ -42,71 +44,48 @@ int main(
 		)
 	};
 	map<NonPlayer, coord> buildingsMap {helperFunctions::calcNonPlayerMap(buildings)};
-	// string oSpecialBuilding {helperFunctions::findSpecialBuilding(buildings)};
+	string oSpecialBuilding {helperFunctions::findSpecialBuilding(buildings)};
 
-	// helperFunctions::changeConsoleBlink(false);
+	helperFunctions::changeConsoleBlink(false);
 
-	// while (tolower(input) != helperConstants::inputQuit) {
-	// 	if (!gameStart) {
-	// 		titleScreen.render();
+	while (tolower(input) != helperConstants::inputQuit) {
+		if (!gameStart) {
+			titleScreen.render();
 
-	// 		input = getch();
+			input = getch();
 
-	// 		if (input == helperConstants::inputSpace) {
-	// 			gameStart = true;
-	// 		}
+			if (input == helperConstants::inputSpace) {
+				gameStart = true;
+			}
 
-	// 		// clear entire terminal to make sure instructions aren't shown during gameplay
-	// 		// because instructions have a larger height than the grid
-	// 		system("CLS");
+			// clear entire terminal to make sure instructions aren't shown during gameplay
+			// because instructions have a larger height than the grid
+			system("CLS");
 
-	// 		continue;
-	// 	}
+			continue;
+		}
 
-	// 	// thread t1(&Actions::standPlayer, &actions, ref(player), ref(grid), ref(m), input);
-	// 	// t1.detach();
+		// thread t1(&Actions::standPlayer, &actions, ref(player), ref(grid), ref(m), input);
+		// t1.detach();
 
-	// 	grid.render(player, buildings, boundaryUpdated);
+		grid.render(player, buildings, boundaryUpdated);
 
-	// 	grid.renderHUD(player, oSpecialBuilding);
+		grid.renderHUD(player, oSpecialBuilding);
 
-	// 	if (boundaryUpdated) {
-	// 		helperFunctions::checkSomeRendered(buildingsMap, someRendered, grid, boundaryUpdated);
-	// 	}
+		if (boundaryUpdated) {
+			helperFunctions::checkSomeRendered(buildingsMap, someRendered, grid, boundaryUpdated);
+		}
 
-	// 	if (static_cast<int>(someRendered.size()) > 0) {
-	// 		player.checkWouldCollide(someRendered, playerWouldCollide);
-	// 	}
+		if (static_cast<int>(someRendered.size()) > 0) {
+			player.checkWouldCollide(someRendered, playerWouldCollide);
+		}
 
-	// 	input = getch();
+		input = getch();
 
-	// 	actions.movePlayer(player, input);
-	// }
+		actions.movePlayer(player, input);
+	}
 
-	// helperFunctions::changeConsoleBlink(true);
+	helperFunctions::changeConsoleBlink(true);
 
     return 0;
 }
-
-
-
-// (TODO)
-// # - refactor someRendered + test most recent commit changes
-// # - convert repo to cmake
-// # - add unit tests catch2
-// # - collision detection of walls, structures
-// - handle inside buildings and entering
-// - render maze entrance and coords
-// - inside maze
-// - randomized dirt terrain with different floor character map
-// - detect if windows, mac or linux os, and use the appropriate `SetConsoleCursorPosition`-like function for windows so `clearScreen` is compatible
-// - enemies chasing if get too close (on a timer? updates per second without needing player input?)
-// - raw string puzzles
-// - player attack; enemy health; to kill takes a certain amount of attacks
-// - player lives; display on screen
-// - player block
-
-// (BUGS/INVESTIGATIONS)
-// # !!! BUG: Actions::standPlayer causing a render bug if holding down the movement keys for a long time; extra borders are displaying; lines 43-44 in `main.cpp`
-// !!! BUG: sometimes the player gets reset to standing for less than a second if spamming the movement keys
-// ??? INVESTIGATION: why cannot use `std::optional`?
