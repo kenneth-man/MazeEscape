@@ -74,8 +74,17 @@ void Grid::renderHUD(
 	const Player &player,
 	string oSpecialBuilding
 ) {
-	cout << "\033[2;3H" << "x: " + to_string(player.xPos) + " " + "y: " + to_string(player.yPos) << '\n';
-	if (oSpecialBuilding != helperConstants::falsyString) cout << "\033[3;3H" << oSpecialBuilding;
+	const string posTwoThree {"\033[2;3H"};
+	const string posThreeThree {"\033[3;3H"};
+	const string posFourThree {"\033[4;3H"};
+	bool specialBuildingExists {oSpecialBuilding != helperConstants::falsyString};
+	const string posMovement {specialBuildingExists ? posFourThree : posThreeThree};
+
+	cout << posTwoThree << "x: " + to_string(player.xPos) + " " + "y: " + to_string(player.yPos) << '\n';
+
+	if (specialBuildingExists) cout << posThreeThree << oSpecialBuilding;
+
+	cout << posMovement << "Movement steps: ";
 }
 
 string Grid::renderBorder(

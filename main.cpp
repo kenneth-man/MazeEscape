@@ -3,15 +3,15 @@
 #include <iostream>
 #include <conio.h>
 #include <map>
-#include "../src/helpers/functions/functions.h"
-#include "../src/Grid/Grid.h"
-#include "../src/Actions/Actions.h"
-#include "../src/TitleScreen/TitleScreen.h"
-#include "../src/NonPlayer/NonPlayer.h"
-#include "../src/helpers/constants/constants.h"
-#include "../src/helpers/constants/playerSprites.h"
-#include "../src/helpers/constants/nonPlayerSprites.h"
-#include "../src/helpers/constants/types.h"
+#include "./src/helpers/functions/functions.h"
+#include "./src/Grid/Grid.h"
+#include "./src/Actions/Actions.h"
+#include "./src/TitleScreen/TitleScreen.h"
+#include "./src/NonPlayer/NonPlayer.h"
+#include "./src/helpers/constants/constants.h"
+#include "./src/helpers/constants/playerSprites.h"
+#include "./src/helpers/constants/nonPlayerSprites.h"
+#include "./src/helpers/constants/types.h"
 
 using namespace std;
 
@@ -19,8 +19,6 @@ int main(
 	int argc,
 	char* argv[]
 ) {
-	//cout << "============== C++ version " << __cplusplus << '\n';
-
 	const vector<int> mainArgs {helperFunctions::useMainArgs(argc, argv)};
 	const int xSize {mainArgs.size() == 0 ? helperConstants::defaultGridXSize : mainArgs[0]};
 	const int ySize {mainArgs.size() == 0 ? helperConstants::defaultGridYSize : mainArgs[1]};
@@ -52,6 +50,7 @@ int main(
 		if (!gameStart) {
 			titleScreen.render();
 
+			// deprecated
 			input = getch();
 
 			if (input == helperConstants::inputSpace) {
@@ -80,7 +79,10 @@ int main(
 			player.checkWouldCollide(someRendered, playerWouldCollide);
 		}
 
-		input = getch();
+		// deprecated
+		//input = getch();
+
+		input = cin.get();
 
 		actions.movePlayer(player, input);
 	}

@@ -8,14 +8,15 @@ project(
 	LANGUAGES C CXX
 )
 
-# Override Pre-defined Variables
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+# Create executable
+add_executable(${PROJECT_NAME} main.cpp)
 
-if(MSVC)
-    add_compile_options(/Zc:__cplusplus)
-endif()
+# Set CMake to use C++17 compiler
+target_compile_features(
+	${PROJECT_NAME}
+	PRIVATE
+	cxx_std_17
+)
 
 # Custom Global Variables
 set(ACTIONS actions)
@@ -25,7 +26,21 @@ set(HELPER_FUNCTIONS helperFunctions)
 set(NONPLAYER nonPlayer)
 set(PLAYER player)
 set(TITLESCREEN titleScreen)
-set(EXECUTABLE_NAME mazeEscape)
+
+# Let CMake know about our subdirectory `CMakeLists.txt` files
+add_subdirectory(src)
+add_subdirectory(tests)
+
+# Link libraries with executable
+target_link_libraries(${PROJECT_NAME} PUBLIC
+	${ACTIONS}
+	${GRID}
+	${HELPER_CONSTANTS}
+	${HELPER_FUNCTIONS}
+	${NONPLAYER}
+	${PLAYER}
+	${TITLESCREEN}
+)
 
 # Include `FetchContent` from Cmake
 include(FetchContent)
@@ -39,8 +54,3 @@ FetchContent_Declare(
 
 # Loads the repository into our project
 FetchContent_MakeAvailable(Catch2)
-
-# Let CMake know about our subdirectory `CMakeLists.txt` files
-add_subdirectory(src)
-add_subdirectory(tests)
-add_subdirectory(app)
